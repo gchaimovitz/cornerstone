@@ -1,36 +1,36 @@
 {{#partial "page"}}
+{{inject 'creditCardNumber' (lang 'forms.validate.payment_method.credit_card_number')}}
+{{inject 'expiration' (lang 'forms.validate.payment_method.expiration')}}
+{{inject 'nameOnCard' (lang 'forms.validate.payment_method.name_on_card')}}
+{{inject 'cvv' (lang 'forms.validate.payment_method.cvv')}}
 
-    {{inject 'creditCardNumber' (lang 'forms.validate.payment_method.credit_card_number')}}
-    {{inject 'expiration' (lang 'forms.validate.payment_method.expiration')}}
-    {{inject 'nameOnCard' (lang 'forms.validate.payment_method.name_on_card')}}
-    {{inject 'cvv' (lang 'forms.validate.payment_method.cvv')}}
+{{inject 'firstNameLabel' (lang 'forms.payment_methods.first_name')}}
+{{inject 'lastNameLabel' (lang 'forms.payment_methods.last_name')}}
+{{inject 'companyLabel' (lang 'forms.payment_methods.company')}}
+{{inject 'phoneLabel' (lang 'forms.payment_methods.phone')}}
+{{inject 'address1Label' (lang 'forms.payment_methods.address1')}}
+{{inject 'address2Label' (lang 'forms.payment_methods.address2')}}
+{{inject 'cityLabel' (lang 'forms.payment_methods.city')}}
+{{inject 'countryLabel' (lang 'forms.payment_methods.country')}}
+{{inject 'stateLabel' (lang 'forms.payment_methods.state')}}
+{{inject 'postalCodeLabel' (lang 'forms.payment_methods.postal_code')}}
+{{inject 'chooseCountryLabel' (lang 'forms.payment_methods.choose_country')}}
 
-    {{inject 'firstNameLabel' (lang 'forms.payment_methods.first_name')}}
-    {{inject 'lastNameLabel' (lang 'forms.payment_methods.last_name')}}
-    {{inject 'companyLabel' (lang 'forms.payment_methods.company')}}
-    {{inject 'phoneLabel' (lang 'forms.payment_methods.phone')}}
-    {{inject 'address1Label' (lang 'forms.payment_methods.address1')}}
-    {{inject 'address2Label' (lang 'forms.payment_methods.address2')}}
-    {{inject 'cityLabel' (lang 'forms.payment_methods.city')}}
-    {{inject 'countryLabel' (lang 'forms.payment_methods.country')}}
-    {{inject 'stateLabel' (lang 'forms.payment_methods.state')}}
-    {{inject 'postalCodeLabel' (lang 'forms.payment_methods.postal_code')}}
-    {{inject 'chooseCountryLabel' (lang 'forms.payment_methods.choose_country')}}
-
-    {{inject 'paymentMethodsUrl' urls.account.payment_methods.all}}
-    {{inject 'paymentsUrl' settings.payments_url}}
-    {{inject 'storeHash' settings.store_hash}}
-    {{inject 'vaultToken' vault.access_token}}
-    {{inject 'shopperId' customer.id}}
-    {{inject 'countries' countries}}
-
-    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-
+{{inject 'paymentMethodsUrl' urls.account.payment_methods.all}}
+{{inject 'paymentsUrl' settings.payments_url}}
+{{inject 'storeHash' settings.store_hash}}
+{{inject 'vaultToken' vault.access_token}}
+{{inject 'shopperId' customer.id}}
+{{inject 'countries' countries}}
+{{inject 'customerEmail' customer.email}}
+{{inject 'providerId' forms.provider}}
+{{inject 'currencyCode' currency_selector.active_currency_code}}
+{{inject 'paymentProviderInitializationData' initialization_data}}
+{{{inject 'storeLocale' settings.request.locale }}}
+<div class="account">
     <h2 class="page-heading">{{lang 'forms.payment_methods.add.heading'}}</h2>
-
     {{> components/account/navigation account_page='payment_methods'}}
-
-    <div class="account account--fixed">
+    <div class="account-body">
 
         {{#if forms.error}}
             {{> components/common/alert/alert-error forms.error}}
@@ -40,9 +40,6 @@
             {{{ account_payments }}}
             <script>
                 window.BigCommerce = window.BigCommerce || {};
-                window.BigCommerce.customerEmail = '{{customer.email}}';
-                window.BigCommerce.providerId = '{{forms.provider}}';
-                window.BigCommerce.currencyCode = '{{currency_selector.active_currency_code}}';
             </script>
         {{else}}
             <form data-payment-method-form class="form">
@@ -65,7 +62,7 @@
                             <div class="paymentMethodForm-inputs">
                                 {{> components/common/forms/text id="credit_card_number" name="credit_card_number" label=(lang 'account.payment_methods.credit_card_number')}}
                                 <svg class="paymentMethodForm-inputs-icon icon">
-                                    <use xlink:href="#icon-lock" />
+                                    <use href="#icon-lock" />
                                 </svg>
                             </div>
                             <div class="paymentMethodForm-inputs">
@@ -79,7 +76,7 @@
                             <div class="paymentMethodForm-inputs">
                                 {{> components/common/forms/text id="cvv" name="cvv" label=(lang 'account.payment_methods.cvv')}}
                                 <svg class="paymentMethodForm-inputs-icon icon">
-                                    <use xlink:href="#icon-lock" />
+                                    <use href="#icon-lock" />
                                 </svg>
                             </div>
                         </div>
@@ -116,6 +113,6 @@
             </form>
         {{/if}}
     </div>
-
+</div>
 {{/partial}}
 {{> layout/base}}

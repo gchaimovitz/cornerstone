@@ -1,4 +1,7 @@
 <form data-contact-form class="form" action="{{urls.contact_us_submit}}" method="post">
+    
+    <h1 class="page-heading">Contact Form</h1>
+    <p>Please fill out the form below if you need assistance.</p>
     {{inject 'contactEmail' (lang 'forms.validate.contact.email_address')}}
     {{inject 'contactQuestion' (lang 'forms.validate.contact.question')}}
     {{#if forms.contact.error}}

@@ -1,4 +1,5 @@
 <section class="heroCarousel"
+    data-slick-delay="2000"
     data-slick='{
         "arrows": {{arrows}},
         "mobileFirst": true,
@@ -6,49 +7,60 @@
         "slidesToScroll": 1,
         "autoplay": true,
         "autoplaySpeed": {{carousel.swap_frequency}},
+        "lazyLoad": "ondemand",
         "slide": "[data-hero-slide]"
     }'
 >
     {{#each carousel.slides}}
     {{#if button_text}}
-    <div data-hero-slide="{{@index}}">
+        <div data-hero-slide="{{@index}}">
     {{else}}
-    <a href="{{url}}" data-hero-slide="{{@index}}" aria-label="{{#if this.alt_text.length '!=' 0}}{{this.alt_text}}{{else}}{{lang 'carousel.slide_number' slide_number=(add @index 1)}}{{/if}}">
+        <a href="{{url}}" data-hero-slide="{{@index}}" aria-label="{{#if this.alt_text.length '!=' 0}}{{this.alt_text}}{{else}}{{lang 'carousel.slide_number' slide_number=(add @index 1)}}{{/if}}">
     {{/if}}
         <div class="heroCarousel-slide {{#if ../theme_settings.homepage_stretch_carousel_images}}stretch{{/if}} {{#if @first}}heroCarousel-slide--first{{/if}}">
             {{#if button_text}}
-            <a href="{{url}}" class="heroCarousel-image-wrapper">
+                <a href="{{url}}" class="heroCarousel-image-wrapper">
             {{else}}
-            <div class="heroCarousel-image-wrapper">
+                <div class="heroCarousel-image-wrapper">
             {{/if}}
-            {{#if @first}}
-                {{> components/common/responsive-img
-                    image=stencil_image
-                    class="heroCarousel-image"
-                    fallback_size='1280w'
-                    lazyload='disabled'
-                }}
-            {{else}}
-                {{> components/common/responsive-img
-                    image=stencil_image
-                    class="heroCarousel-image"
-                    fallback_size='1280w'
-                    lazyload='lazyload'
-                }}
-            {{/if}}
-            {{#if button_text}}
-            </a>
-            {{else}}
+            <div class="heroCarousel-image-desktop">
+                {{#if @first}}
+                    {{> components/common/responsive-img
+                        image=stencil_image
+                        class="heroCarousel-image"
+                        fallback_size='1280w'
+                        lazyload='disabled'
+                    }}
+                {{else}}
+                    {{> components/common/responsive-img
+                        image=stencil_image
+                        class="heroCarousel-image"
+                        fallback_size='1280w'
+                        lazyload='lazyload'
+                    }}
+                {{/if}}
             </div>
+            <div class="heroCarousel-image-mobile">
+                {{#if @first}}
+                    <img src="https://tegstools.com/product_images/uploaded_images/{{this.alt_text}}">
+                {{else}}
+                    <img src="https://tegstools.com/product_images/uploaded_images/{{this.alt_text}}" loading="lazy">
+                {{/if}}
+            </div>
+            
+            {{#if button_text}}
+                </a>
+            {{else}}
+                </div>
             {{/if}}
             {{#or heading text button_text}}
                 {{> components/carousel-content}}
             {{/or}}
         </div>
     {{#if button_text}}
-    </div>
+        </div>
     {{else}}
-    </a>
+        </a>
     {{/if}}
     {{/each}}
     {{#if carousel.slides.length '>' 1}}

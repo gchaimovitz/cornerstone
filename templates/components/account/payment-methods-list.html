@@ -1,7 +1,7 @@
+<div class="account-body">
 {{#unless customer.payment_methods}}
     {{> components/common/alert/alert-info (lang 'account.payment_methods.no_methods')}}
 {{/unless}}
-
 {{#each customer.payment_methods}}
     {{!-- Check that the current instrument type is within our whitelist to stop future ones automagically coming through --}}
     {{#inArray ../theme_settings.supported_payment_methods type}}
@@ -54,7 +54,7 @@
                                     {{/if}}
                                     {{#if is_default}}
                                         <svg class="methodHeader-default">
-                                            <use xlink:href="#icon-star" />
+                                            <use href="#icon-star" />
                                         </svg>
                                     {{/if}}
                                 </div>
@@ -105,4 +105,4 @@
         </div>
     {{/inArray}}
 {{/each}}
-
+</div>

@@ -8,33 +8,169 @@ product:
         limit: {{theme_settings.productpage_related_products_count}}
     similar_by_views:
         limit: {{theme_settings.productpage_similar_by_views_count}}
+gql: "query ($productId: Int!) {
+  site {
+    product(entityId: $productId) {    
+        variants (first: 25){
+          edges {
+            node {
+              entityId
+              sku
+              inventory {
+                aggregated {
+                  availableToSell
+                }
+                byLocation {
+                  edges {
+                    node {
+                      locationEntityCode
+                      availableToSell
+                      isInStock
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    }
+  }
+}
+"
 ---
 {{inject 'productId' product.id}}
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 
 {{#partial "page"}}
 
-    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-
+<div class="page">
     {{#each product.shipping_messages}}
         {{> components/common/alert/alert-info message}}
     {{/each}}
 
-    <div>
-        {{> components/products/product-view}}
+    {{> components/products/product-view}}
+    {{{region name="product_below_content"}}}
 
-        {{{region name="product_below_content"}}}
+    <!--{{#if product.videos.list.length}}
+        {{> components/products/videos product.videos}}
+    {{/if}}-->
 
-        {{#if product.videos.list.length}}
-            {{> components/products/videos product.videos}}
-        {{/if}}
+    {{#all settings.show_product_reviews theme_settings.show_product_reviews (if theme_settings.show_product_details_tabs '!==' true)}}
+        {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+    {{/all}}
 
-        {{#all settings.show_product_reviews theme_settings.show_product_reviews (if theme_settings.show_product_details_tabs '!==' true)}}
-            {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
-        {{/all}}
-
-        {{> components/products/tabs}}
-    </div>
+    {{> components/products/tabs}}
 
     {{> components/products/schema}}
+    
+    {{#if product.related_products}}
+    <section id="mm-relatedp">
+        <div class="container">
+            <h2 class="page-heading">{{lang 'products.related_products'}}</h2>        
+                {{#if settings.data_tag_enabled}}
+                {{> components/products/carousel products=product.related_products columns=4 list="Related Products"}}
+                {{else}}
+                    {{> components/products/carousel products=product.related_products columns=4}}
+                {{/if}}        
+        </div>
+    </section>
+    {{/if}}
+    {{#if product.similar_by_views}}
+    <section id="mm-similarp">
+        <div class="container">
+            <h2 class="page-heading">{{lang 'products.similar_by_views'}}</h2>       
+                {{> components/products/carousel products=product.similar_by_views columns=4 list="Customers Also Viewed"}}
+        </div>
+    </section>
+    {{/if}}
+</div>
 {{/partial}}
 {{> layout/base}}
+
+<!-- Klaviyo Browsed Product -->
+<script type="text/javascript">
+    var _learnq = _learnq || [];
+    
+    var product_categories = [];
+    {{#each product.category}}
+    product_categories.push('{{this}}')
+    {{/each}}
+    
+    var item = {
+    Name: "{{product.title}}",
+    ProductID: "{{product.id}}",
+    ImageURL: "{{getImage product.main_image 'product_size' (cdn theme_settings.default_image_product)}}",
+    URL: "{{product.url}}",
+    Brand: "{{product.brand.name}}",
+    Categories: product_categories,
+    Price: "{{product.price.without_tax.value}}",
+    CompareAtPrice:"{{product.price.rrp_without_tax.value}}"
+    };
+    
+    _learnq.push(['track', 'Viewed Product', item]);
+    
+    _learnq.push(['trackViewedItem', {
+    Title: item.Name,
+    ItemId: item.ProductID,
+    Categories: item.Categories,
+    ImageUrl: item.ImageURL,
+    Url: item.URL,
+    Metadata: {
+    Brand: item.Brand,
+    Price: item.Price,
+    CompareAtPrice: item.CompareAtPrice
+    }
+    }]);
+</script>
+<script type="text/javascript">
+function scrollIntoViewIfNeeded(el, container) {
+    const elRect = el.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+
+    const elTop = elRect.top - containerRect.top + container.scrollTop;
+    const elBottom = elTop + el.offsetHeight;
+
+    const containerTop = container.scrollTop;
+    const containerBottom = containerTop + container.clientHeight;
+
+    // Only scroll if NOT already visible
+    if (elTop < containerTop || elBottom > containerBottom) {
+        const targetScroll =
+            elTop - container.clientHeight / 2 + el.offsetHeight / 2;
+
+        container.scrollTo({
+            top: targetScroll,
+            behavior: 'smooth'
+        });
+    }
+}
+
+const $form = $('form[data-cart-item-add]');
+const productId = $form.find('input[name="product_id"]').val();
+
+$form.on('change', () => {
+    $(".sku-row .availData").removeClass("availHL");
+
+    $.ajax({
+        type: 'POST',
+        url: `/remote/v1/product-attributes/${productId}`,
+        data: $form.serialize(),
+        success: (response) => {
+            const currentSku = response.data.sku;
+            if (!currentSku) return;
+
+            const $row = $(`.sku-row[data-variant-sku="${currentSku}"] .availData`);
+            if (!$row.length) return;
+
+            const rowEl = $row[0];
+            const container = rowEl.closest('.availContainer');
+            if (!container) return;
+
+            scrollIntoViewIfNeeded(rowEl, container);
+            $row.addClass("availHL");
+        }
+    });
+});
+
+
+</script>

@@ -8,6 +8,11 @@ import { defaultModal, showAlertModal, ModalEvents } from './global/modal';
 import CartItemDetails from './common/cart-item-details';
 
 export default class Cart extends PageManager {
+    constructor(context) {
+        super(context);
+        this.context = context;
+    }
+
     onReady() {
         this.$modal = null;
         this.$cartPageContent = $('[data-cart]');
@@ -136,6 +141,13 @@ export default class Cart extends PageManager {
 
         utils.api.productAttributes.configureInCart(itemId, options, (err, response) => {
             modal.updateContent(response.content);
+
+            if (this.context.themeSettings.enable_mul_quantity_picklist) {
+                $('.pick-list-option-default').remove();
+            } else {
+                $('.muiltiple-picklist-wrapper').remove();
+            }
+
             const optionChangeHandler = () => {
                 const $productOptionsContainer = $('[data-product-attributes-wrapper]', this.$modal);
                 const modalBodyReservedHeight = $productOptionsContainer.outerHeight();

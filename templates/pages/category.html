@@ -16,42 +16,221 @@ category:
 
 {{#partial "page"}}
 
-{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-{{#if category.image}}
-    {{> components/common/responsive-img
-        image=category.image
-        fallback_size=theme_settings.zoom_size
-        lazyload=theme_settings.lazyload_mode
-        class="category-header-image"
-    }}
-{{/if}}
-{{#unless theme_settings.hide_category_page_heading }}
-    <h1 class="page-heading">{{category.name}}</h1>
-    {{{region name="category_below_header"}}}
-{{/unless}}
-{{{category.description}}}
 <div class="page">
-    {{#if category.faceted_search_enabled}}
-        <aside class="page-sidebar" id="faceted-search-container">
-            {{> components/category/sidebar}}
-        </aside>
-    {{else if category.subcategories}}
-        <aside class="page-sidebar" id="faceted-search-container">
-            {{> components/category/sidebar}}
-        </aside>
-    {{else if category.shop_by_price}}
-        {{#if theme_settings.shop_by_price_visibility}}
-             <aside class="page-sidebar" id="faceted-search-container">
-                {{> components/category/sidebar}}
-            </aside>
-        {{/if}}
+    {{#if category.image}}
+        {{> components/common/responsive-img
+            image=category.image
+            fallback_size=theme_settings.zoom_size
+            lazyload=theme_settings.lazyload_mode
+            class="category-header-image"
+        }}
     {{/if}}
+    {{#unless theme_settings.hide_category_page_heading }}
+        {{#if category.description}}
+            <h1 class="page-heading">{{category.description}}</h1>
+        {{else}}
+            <h1 class="page-heading">{{{category.name}}}</h2>
+        {{/if}}
+        {{{region name="category_below_header"}}}
+    {{/unless}}
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    <!--<span style="text-align:center;visibility:hidden;height:1px;display:block;">{{{category.description}}}</span>-->
 
-    <div class="page-content" id="product-listing-container">
-        {{> components/category/product-listing}}
-        {{{region name="category_below_content"}}}
+    {{#if category.subcategories}}
+    <nav>
+        <div class="sidebarBlock">
+            <ul class="navList">
+                {{#each category.subcategories}}
+                <li class="navList-item" style="flex-wrap: wrap;">
+                    {{#if image}}
+                        <a class="navList-img" href="{{url}}" class="subcategories-image"><img src="{{getImage image 'category_card_size'}}" alt="{{name}}"></a><br>
+                        <!--<a class="navList-action" href="{{url}}" title="{{name}}">{{name}}</a>-->
+                    {{else}}
+                        <a class="navList-action" href="{{url}}" title="{{name}}">{{name}}</a>
+                    {{/if}}
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </nav>
+    {{/if}}
+    
+    <div id="anchorBlock"></div>
+    <div class="page-content page-content--centered" style="width: 100%;">
+        <div class="snize" id="snize_results">
+        	<div id="snize_skeleton_results" style="height: 100vh;">
+        		<div class="snize-main-panel snize-skeleton-card">
+        			<div class="snize-main-panel-controls">
+        				<span class="snize-skeleton-text"/>
+        				<span class="snize-skeleton-text"/>
+        				<span class="snize-skeleton-text"/>
+        			</div>
+        			<div class="snize-main-panel-dropdown">
+        				<span class="snize-skeleton-text snize-full-width"/>
+        			</div>
+        		</div>
+        		<div class="snize-header">
+        			<span class="snize-search-results-header snize-skeleton-text snize-full-width"/>
+        		</div>
+        		<div class="snize-horizontal-filters snize-product-filters">
+        			<div class="snize-filters-dropdown snize-skeleton-card small">
+        				<span class="snize-skeleton-text snize-full-width"/>
+        			</div>
+        			<div class="snize-filters-dropdown snize-skeleton-card small">
+        				<span class="snize-skeleton-text snize-full-width"/>
+        			</div>
+        			<div class="snize-filters-dropdown snize-skeleton-card small">
+        				<span class="snize-skeleton-text snize-full-width"/>
+        			</div>
+        		</div>
+        		<div class="snize-filters-sidebar snize-product-filters">
+        			<div class="snize-product-filters-block snize-skeleton-card">
+        				<div class="snize-product-filters-title">
+        					<span class="snize-skeleton-text snize-full-width"/>
+        				</div>
+        				<div class="snize-product-filters-list">
+        					<span class="snize-skeleton-text snize-full-width"/>
+        					<span class="snize-skeleton-text snize-full-width"/>
+        					<span class="snize-skeleton-text snize-full-width"/>
+        				</div>
+        			</div>
+        			<div class="snize-product-filters-block snize-skeleton-card">
+        				<div class="snize-product-filters-title">
+        					<span class="snize-skeleton-text snize-full-width"/>
+        				</div>
+        				<div class="snize-product-filters-list">
+        					<span class="snize-skeleton-text snize-full-width"/>
+        					<span class="snize-skeleton-text snize-full-width"/>
+        					<span class="snize-skeleton-text snize-full-width"/>
+        				</div>
+        			</div>
+        			<div class="snize-product-filters-block snize-skeleton-card">
+        				<div class="snize-product-filters-title">
+        					<span class="snize-skeleton-text snize-full-width"/>
+        				</div>
+        				<div class="snize-product-filters-list">
+        					<span class="snize-skeleton-text snize-full-width"/>
+        					<span class="snize-skeleton-text snize-full-width"/>
+        					<span class="snize-skeleton-text snize-full-width"/>
+        				</div>
+        			</div>
+        		</div>
+        		<div class="snize-search-results-main-content">
+        			<div id="snize-search-results-wrapper" class="snize-search-results-grid-mode snize-three-columns">
+        				<ul class="snize-search-results-content">
+        					<li class="snize-product">
+        						<div class="snize-item snize-skeleton-card">
+        							<div class="snize-thumbnail-wrapper">
+        								<div class="snize-thumbnail"/>
+        							</div>
+        							<div class="snize-overhidden">
+        								<span class="snize-skeleton-text snize-full-width"/>
+        								<span class="snize-skeleton-text snize-full-width"/>
+        								<span class="snize-skeleton-text snize-full-width"/>
+        							</div>
+        						</div>
+        					</li>
+        					<li class="snize-product">
+        						<div class="snize-item snize-skeleton-card">
+        							<div class="snize-thumbnail-wrapper">
+        								<div class="snize-thumbnail"/>
+        							</div>
+        							<div class="snize-overhidden">
+        								<span class="snize-skeleton-text snize-full-width"/>
+        								<span class="snize-skeleton-text snize-full-width"/>
+        								<span class="snize-skeleton-text snize-full-width"/>
+        							</div>
+        						</div>
+        					</li>
+        					<li class="snize-product">
+        						<div class="snize-item snize-skeleton-card">
+        							<div class="snize-thumbnail-wrapper">
+        								<div class="snize-thumbnail"/>
+        							</div>
+        							<div class="snize-overhidden">
+        								<span class="snize-skeleton-text snize-full-width"/>
+        								<span class="snize-skeleton-text snize-full-width"/>
+        								<span class="snize-skeleton-text snize-full-width"/>
+        							</div>
+        						</div>
+        					</li>
+        					<li class="snize-product">
+        						<div class="snize-item snize-skeleton-card">
+        							<div class="snize-thumbnail-wrapper">
+        								<div class="snize-thumbnail"/>
+        							</div>
+        							<div class="snize-overhidden">
+        								<span class="snize-skeleton-text snize-full-width"/>
+        								<span class="snize-skeleton-text snize-full-width"/>
+        								<span class="snize-skeleton-text snize-full-width"/>
+        							</div>
+        						</div>
+        					</li>
+        					<li class="snize-product">
+        						<div class="snize-item snize-skeleton-card">
+        							<div class="snize-thumbnail-wrapper">
+        								<div class="snize-thumbnail"/>
+        							</div>
+        							<div class="snize-overhidden">
+        								<span class="snize-skeleton-text snize-full-width"/>
+        								<span class="snize-skeleton-text snize-full-width"/>
+        								<span class="snize-skeleton-text snize-full-width"/>
+        							</div>
+        						</div>
+        					</li>
+        				</ul>
+        			</div>
+        		</div>
+        	</div>
+        </div>
     </div>
+    {{{region name="category_below_content"}}}
 </div>
+<script>
+(function(window, undefined) {
+    /* Themes hack */
+    var pageContent = document.querySelector('.page:not(.content-page-with-sidenav) > .page-content');
+    var pageSidebar = document.querySelector('.page > .page-sidebar');
 
+    if (pageContent && !pageSidebar) {
+        pageContent.style.width = '100%';
+    }
+
+    var snize_results = document.getElementById('snize_results');
+    if (snize_results != null && snize_results != undefined && snize_results.innerHTML != '') {
+        return;
+    }
+    sInterval = setInterval(function() {
+        var snize_results = document.getElementById('snize_results');
+        if (snize_results && snize_results.innerHTML != '') {
+            clearInterval(sInterval);
+            var skeleton_results = document.getElementById('snize_skeleton_results');
+            if (skeleton_results && skeleton_results.innerHTML != '') {
+                skeleton_results.parentNode.removeChild(skeleton_results);
+            }
+            return;
+        }
+        var grid_wrapper = document.getElementById('snize-search-results-wrapper');
+        if (grid_wrapper) {
+            if (grid_wrapper.offsetWidth >= 1055) {
+                grid_wrapper.className = grid_wrapper.className.replace(/(?:^|\s)snize-three-columns(?!\S)/g, '').replace(/(?:^|\s)snize-four-columns(?!\S)/g, '');
+                if (!grid_wrapper.className.match(/(?:^|\s)snize-five-columns(?!\S)/)) {
+                    grid_wrapper.className += ' snize-five-columns';
+                }
+            } else if (grid_wrapper.offsetWidth >= 915) {
+                grid_wrapper.className = grid_wrapper.className.replace(/(?:^|\s)snize-three-columns(?!\S)/g, '').replace(/(?:^|\s)snize-five-columns(?!\S)/g, '');
+                if (!grid_wrapper.className.match(/(?:^|\s)snize-four-columns(?!\S)/)) {
+                    grid_wrapper.className += ' snize-four-columns';
+                }
+            } else {
+                grid_wrapper.className = grid_wrapper.className.replace(/(?:^|\s)snize-four-columns(?!\S)/g, '').replace(/(?:^|\s)snize-five-columns(?!\S)/g, '');
+                if (!grid_wrapper.className.match(/(?:^|\s)snize-three-columns(?!\S)/)) {
+                    grid_wrapper.className += ' snize-three-columns';
+                }
+            }
+        }
+    }, 30);
+})(window);
+</script>
 {{/partial}}
 {{> layout/base}}

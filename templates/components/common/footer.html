@@ -18,20 +18,147 @@
     {{/if}}
 
 {{/if}}
+
+{{#if page_type '===' 'default'}}    {{!-- MM_ container will be inside of home.html--}}
+    <section id="mm-rev">
+        <div class="container">
+            <div class="review_carousel wow fadeup" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+                <div style="min-height: 100px;" class="shopperapproved_widget sa_static sa_count4 sa_horizontal sa_count4 sa_bgWhite sa_colorBlack sa_borderGray sa_noborder sa_FjY sa_fixed sa_showlinks sa_large sa_showdate ">
+                </div>
+                    <script type="text/javascript">
+                    var sa_interval = 5000;function saLoadScript(src) { 
+                        var js = window.document.createElement('script'); 
+                        js.src = src; js.type = 'text/javascript';
+                        document.getElementsByTagName("head")[0].appendChild(js); } 
+                        if (typeof(shopper_first) == 'undefined') saLoadScript('//www.shopperapproved.com/widgets/testimonial/3.0/31574.js');
+                        shopper_first = true;
+                    </script>
+                    <div style="text-align:right;">
+                        <a class="sa_footer" href="https://www.shopperapproved.com/reviews/tegstools.com/" target="_blank" rel="nofollow">
+                            <img loading="lazy" class="sa_widget_footer" style="border: 0;" alt="" src="https://www.shopperapproved.com/widgets/widgetfooter-darklogo.png">
+                        </a>
+                    </div>
+            </div>
+        </div>
+    </section>
+{{/if}}
+
+{{#if page_type '===' 'category'}}
+<style>
+    .pagination-list {
+        display: none;
+    }
+</style>
+{{/if}}
+
 <footer class="footer" role="contentinfo">
     <h2 class="footer-title-sr-only">{{lang 'footer.title'}}</h2>
-    <div class="container">
-        {{#if theme_settings.social_icon_placement_bottom '!==' 'bottom_none'}}
-            <article class="footer-info-col
-                footer-info-col--social
-                footer-info-col--{{#if theme_settings.social_icon_placement_bottom '===' 'bottom_left'}}left{{else}}right{{/if}}"
-                data-section-type="footer-webPages">
-                    <h3 class="footer-info-heading">{{lang 'social.connect'}}</h3>
-                    {{> components/common/social-links}}
+    <section id="mm-suscribe">
+        <div class="container">            
+            <article class="newsletter" data-section-type="newsletterSubscription">
+                {{#if settings.show_newsletter_box}}
+                    {{> components/common/subscription-form}}
+                {{/if}}
             </article>
-        {{/if}}
-        <section class="footer-info">
-            <article class="footer-info-col footer-info-col--small" data-section-type="footer-webPages">
+        </div>
+    </section>
+    
+    <section id="mm-addrs">  
+        <a href="/"><img loading="lazy" src="{{cdn 'img/logo_tegs-footer.png'}} " alt="Logo Footer"></a>
+        <div class="container">  
+            <div class="footerAddrs"></div>    
+            {{!--        
+            <h3 class="footer-info-heading">{{lang 'footer.info'}}</h3>
+            {{#if settings.address}}
+            <article  data-section-type="storeInfo" style="display:none">                
+                <address>{{nl2br settings.address}}</address>
+                {{#if settings.phone_number}}
+                    <strong>{{lang 'footer.call_us' phone_number=settings.phone_number}}</strong>
+                {{/if}}
+            </article>            
+            {{/if}}
+            --}}  
+            {{{region name="ssl_site_seal--global"}}}    {{!-- Check Page Builder to change this content HTML(global)--}}         
+        </div> 
+    </section>  
+    <section class="footer-info" data-section-type="footer-webPages">
+        <div class="container">
+            <div>
+                <article class="LnksFooter" data-section-type="footer-webPages">
+                    <h3 class="footer-info-heading">Customer Service</h3>
+                    <ul>
+                        <li><a href="/blade-sharpening/">Blade Sharpening</a></li>
+                        <li><a href="/contact-us/">Contact Us</a></li>
+                        <li><a href="/faq/">FAQs</a></li>
+                        <li><a href="/flyers/">Flyers</a></li>
+                        <li><a href="/return-policy/">Return Policy</a></li>
+                        <li><a href="/shipping/">Shipping & Delivery</a></li>
+                        <li><a href="/supplier-catalogues/">Supplier Catalogues</a></li>
+                        <li><a href="/services/">Tool Repair</a></li>
+                    </ul>
+                </article>
+                <article class="LnksFooter">
+                    <h3 class="footer-info-heading">Company Info</h3>
+                    <ul>
+                        <li><a href="/about-tegs/">About Us</a></li>
+                        <li><a href="/careers/">Careers</a></li>
+                        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+                        <li><a href="/terms-and-conditions/">Terms & Conditions</a></li>
+                        <li><a href="/testimonials/">Testimonials</a></li>
+                    </ul>
+                    <a href="https://www.shopperapproved.com/reviews/tegstools.com" class="shopperlink new-sa-seals placement-811"><img loading="lazy" src="//www.shopperapproved.com/seal/31574/811-sa-seal.gif" style="border-radius: 4px;" alt="Customer Reviews" oncontextmenu="var d = new Date(); alert('Copying Prohibited by Law - This image and all included logos are copyrighted by Shopper Approved \251 '+d.getFullYear()+'.'); return false;" /></a><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/javascript">(function() { var js = window.document.createElement("script"); js.innerHTML = 'function openshopperapproved(o){var e="Microsoft Internet Explorer"!=navigator.appName?"yes":"no",n=screen.availHeight-90,r=940;return window.innerWidth<1400&&(r=620),window.open(this.href,"shopperapproved","location="+e+",scrollbars=yes,width="+r+",height="+n+",menubar=no,toolbar=no"),o.stopPropagation&&o.stopPropagation(),!1}!function(){for(var o=document.getElementsByClassName("shopperlink"),e=0,n=o.length;e<n;e++)o[e].onclick=openshopperapproved}();'; js.type = "text/javascript"; document.getElementsByTagName("head")[0].appendChild(js);var link = document.createElement('link');link.rel = 'stylesheet';link.type = 'text/css';link.href = "//www.shopperapproved.com/seal/811.css";document.getElementsByTagName('head')[0].appendChild(link);})();</script>
+                </article>
+                <article class="LnksFooter">
+                    <h3 class="footer-info-heading">My Account</h3>
+                    <ul>
+                        <li><a href="/login.php">Login & Register</a></li>
+                        <li><a href="/cart.php">Shopping Cart</a></li>
+                        <li><a href="/account.php?action=order_status">Tracking Status</a></li>
+                        {{#if settings.show_wishlist}}<li><a href="/wishlist.php">Wish List</a></li>{{/if}}
+                        {{#if settings.gift_certificates_enabled}}
+                            <li class="navUser-item">
+                                <a href="/giftcertificates.php">
+                                Gift Certificates
+                                </a>
+                            </li>
+                        {{/if}}                        
+                    </ul>
+                    <ul class="TClist">
+                        <li><i class="fab fa-cc-visa"></i></li>
+                        <li><i class="fab fa-cc-mastercard"></i></li>
+                        <li><i class="fab fa-cc-paypal"></i></li>
+                        <li><i class="fab fa-cc-discover"></i></li>
+                    </ul>
+                    {{> components/common/payment-icons}}
+                </article>
+                <article class="socialLnks LnksFooter" data-section-type="footer-webPages">
+                        <h3 class="footer-info-heading">Contact Us</h3>
+                        <p class="footer-info-details"><i class="far fa-phone fa-flip-horizontal"></i> <strong>Toll Free:</strong> <a href="tel:1-866-462-8347">1-866-462-TEGS</a></p>
+                        <p class="footer-info-details"><i class="fal fa-envelope-open"></i> <a href="/contact-us/">sales@tegstools.com</a></p>
+                        <p class="footer-info-details"><i class="fa-light fa-mobile"></i> Phone Order Code: <span id="nf_customer_code"><script type='text/javascript' src='https://services.nofraud.com/js/39454/customer_code.js'></script></span></p>
+                        <div id="socialLinks"></div>
+                        <ul>
+                            <li class="social-facebook"><a href="https://www.facebook.com/tegstools" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                            <li class="social-instagram"><a href="https://instagram.com/tegstools" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                            <li class="social-twitter"><a href="https://twitter.com/intent/follow?source=followbutton&variant=1.0&screen_name=tegstools" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                            <li class="social-tiktok"><a href="https://tiktok.com/@tegstools" target="_blank"><i class="fab fa-tiktok"></i></a></li>
+                            <li class="social-youtube"><a href="https://www.youtube.com/user/tegstools" target="_blank"><i class="fab fa-youtube"></i></a></li>
+                            <li class="social-printerest"><a href="https://www.pinterest.com/tegstools" target="_blank"><i class="fab fa-pinterest-p"></i></a></li>
+                        </ul>
+                </article>
+            </div>            
+        </div>
+    </section>  
+    <section class="FooterC">
+        <div class="container">
+            <p><img loading="lazy" src="{{cdn 'img/canada_iconB.svg'}}" alt="" width="33"><a href="/">TEGS Tools</a> © All rights reserved. </p>
+            <p>E-commerce Development Agency: <a href="https://marketingmedia.ca/" target="_blank"><img loading="lazy" src="{{cdn 'img/logo_mm.svg'}}" alt="" width="110"></a></p>
+            
+        </div>
+    </section>       
+    {{!--   
+    <div class="container">
+            <article class="footer-info-col footer-info-col--small" >
                 <h3 class="footer-info-heading">{{lang 'footer.navigate'}}</h3>
                 <ul class="footer-info-list">
                     {{#each pages}}
@@ -44,7 +171,6 @@
                     </li>
                 </ul>
             </article>
-
             <article class="footer-info-col footer-info-col--small" data-section-type="footer-categories">
                 <h3 class="footer-info-heading">{{lang 'footer.categories'}}</h3>
                 <ul class="footer-info-list">
@@ -55,7 +181,6 @@
                     {{/each}}
                 </ul>
             </article>
-
             {{#and theme_settings.shop_by_brand_show_footer shop_by_brand.length}}
             <article class="footer-info-col footer-info-col--small" data-section-type="footer-brands">
                 <h3 class="footer-info-heading">{{lang 'footer.brands'}}</h3>
@@ -68,30 +193,7 @@
                     <li><a href="{{urls.brands}}">{{lang 'common.view_all'}}</a></li>
                 </ul>
             </article>
-            {{/and}}
-
-            {{#if settings.address}}
-            <article class="footer-info-col footer-info-col--small" data-section-type="storeInfo">
-                <h3 class="footer-info-heading">{{lang 'footer.info'}}</h3>
-                <address>{{nl2br settings.address}}</address>
-                {{#if settings.phone_number}}
-                    <strong>{{lang 'footer.call_us' phone_number=settings.phone_number}}</strong>
-                {{/if}}
-            </article>
-            {{/if}}
-
-            <article class="footer-info-col" data-section-type="newsletterSubscription">
-                {{#if settings.show_newsletter_box}}
-                    {{> components/common/subscription-form}}
-                {{/if}}
-                {{> components/common/payment-icons}}
-            </article>
-        </section>
-        {{#if settings.paypal_commerce_credit_message}}
-        <div class="footer-copyright">
-            <p class="paypal-credit">{{nl2br settings.paypal_commerce_credit_message}}</p>
-        </div>
-        {{/if}}
+            {{/and}}  
         {{#if theme_settings.show_powered_by}}
             <div class="footer-copyright">
                 <p class="powered-by">{{lang 'footer.powered_by'}} <a href="https://www.bigcommerce.com?utm_source=merchant&amp;utm_medium=poweredbyBC" rel="nofollow">BigCommerce</a></p>
@@ -101,7 +203,7 @@
             <div class="footer-copyright">
                 <p class="powered-by">&copy; {{moment format="YYYY"}} {{settings.store_name}} </p>
             </div>
-        {{/if}}
+        {{/if}}        
     </div>
-    {{{region name="ssl_site_seal--global"}}}
+    --}}
 </footer>

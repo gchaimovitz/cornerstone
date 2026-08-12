@@ -3430,5 +3430,46 @@
         ]
       }
     ]
+  },
+  {
+    "name": "Other Settings",
+    "settings": [
+      {
+        "type": "heading",
+        "content": "Brands Page"
+      },
+      {
+        "type": "checkbox",
+        "label": "A To Z Layout",
+        "id": "halo_brandAZlayout",
+        "force_reload": true
+      },
+      {
+        "type": "heading",
+        "content": "Multiple Quantity Pick List"
+      },
+      {
+        "type": "checkbox",
+        "label": "Enable Multiple Quantity Pick List",
+        "id": "enable_mul_quantity_picklist",
+        "force_reload": true
+      },
+      {
+        "type": "heading",
+        "content": "Sticky Add To Cart"
+      },
+      {
+        "type": "checkbox",
+        "label": "Enable Sticky Add To Cart",
+        "id": "halo_sticky_add_to_cart",
+        "force_reload": true
+      },
+      {
+        "type": "checkbox",
+        "label": "Enable Sticky Add To Cart Mobile",
+        "id": "halo_sticky_add_to_cart_mobile",
+        "force_reload": true
+      }
+    ]
   }
 ]

@@ -1,18 +1,15 @@
 {{#partial "page"}}
 {{inject 'selectItem' (lang 'forms.validate.account.reorder.select_item')}}
-
-{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-<h2 class="page-heading title">{{lang 'account.orders.details.heading' number=order.id}}</h2>
-{{> components/account/navigation account_page='orders'}}
-
 <div class="account">
+    <h2 class="page-heading title">{{lang 'account.orders.details.heading' number=order.id}}</h2>
+    {{> components/account/navigation account_page='orders'}}
     <div class="account-body">
         {{#each order.status_messages}}
             {{> components/common/alert/alert-info message}}
         {{/each}}
         <div class="account-content account-content--fixedSmall">
             {{> components/account/order-contents order=order}}
-
+    
             <dl class="account-orderTotal">
                 {{#each order.total_rows}}
                     {{#if value.value}}
@@ -22,7 +19,6 @@
                 {{/each}}
             </dl>
         </div>
-
         <aside class="account-sidebar">
             <section class="account-sidebar-block">
                 <h3 class="account-heading">{{lang 'account.orders.details.order_details'}}</h3>
@@ -47,10 +43,10 @@
                         <dd class="order-payments-value order-payments-value--long">{{nl2br order.order_instructions}}</dd>
                     {{/if}}
                 </dl>
-
+    
                 <button data-print-invoice="{{order.invoice_url}}" class="button">{{lang 'account.orders.details.print_invoice'}}</button>
             </section>
-
+    
             {{#if order.shipping_address}}
                 <section class="account-sidebar-block">
                     <h3 class="account-heading">{{lang 'account.orders.details.ship_to'}}</h3>
@@ -72,7 +68,7 @@
                     <dt class="definitionList-key">{{lang 'account.orders.details.pickup_method'}}</dt>
                     <dd class="definitionList-value">{{sanitize pickup_method_display_name}}</dd>
                 </dl>
-
+    
                 <ul class="account-order-address">
                     <li><b>{{{ sanitize location_name}}}</b></li>
                     <li>{{{ sanitize location_line_1}}}</li>
@@ -80,7 +76,7 @@
                     <li>{{{ sanitize location_city}}}, {{{ sanitize location_state}}}, {{{ sanitize location_zip}}}</li>
                     <li>{{{ sanitize location_country_name}}}</li>
                 </ul>
-
+    
                 <dl class="definitionList">
                     {{#if location_phone}}
                     <dt class="definitionList-key">{{lang 'account.orders.details.phone'}}</dt>
@@ -91,7 +87,7 @@
                     <dd class="definitionList-value">{{{ sanitize location_email}}}</dd>
                     {{/if}}
                 </dl>
-
+    
                 <ul class="account-order-address">
                     <li><b>{{{ lang 'account.orders.details.opening_hours'}}}</b></li>
                     <li>{{{ sanitize collection_time_description}}}</li>
@@ -108,7 +104,7 @@
                     </section>
                 {{/if}}
             {{/if}}
-
+    
             <section class="account-sidebar-block">
                 <h3 class="account-heading">{{lang 'account.orders.details.bill_to'}}</h3>
                 <ul class="account-order-address">
@@ -120,7 +116,7 @@
                     <li>{{{ sanitize order.billing_address.country}}}</li>
                 </ul>
             </section>
-
+    
             {{#if shipments}}
                 <section class="account-sidebar-block">
                     <h3 class="account-heading">{{lang 'account.orders.details.shipments.header'}}</h3>
@@ -135,13 +131,17 @@
                                 {{#if shipping_track.url}}
                                     <a href="{{shipping_track.url}}">
                                 {{/if}}
-
+    
                                 {{#if show_shipping_method}}
-                                    {{shipping_track.number}} &mdash; {{shipping_method}}
+                                    <!--{{shipping_track.number}} &mdash; {{shipping_method}}-->
+                                    {{shipping_method}}
+                                    <div id="as-root"></div>
+                                    <script>(function(e,t,n){var r,i=e.getElementsByTagName(t)[0];if(e.getElementById(n))return;r=e.createElement(t);r.id=n;r.src="https://button.aftership.com/all.js?username=tegstools";i.parentNode.insertBefore(r,i)})(document,"script","aftership-jssdk")</script>
+                                    <div class="as-track-button" data-size="medium" data-domain="tegstools.aftership.com" data-btn-label="Track" data-btn-bg-color="#c00000" data-tracking-number="{{shipping_track.number}}"></div>
                                 {{else}}
                                     {{shipping_track.number}}
                                 {{/if}}
-
+    
                                 {{#if shipping_track.url}}
                                     </a>
                                 {{/if}}
@@ -150,14 +150,14 @@
                     {{/each}}
                 </section>
             {{/if}}
-
+    
             {{#if order.comments}}
                 <section class="account-sidebar-block">
                     <h3 class="account-heading">{{lang 'account.orders.details.comments'}}</h3>
                     <p>{{order.comments}}</p>
                 </section>
             {{/if}}
-
+    
             <section class="account-sidebar-block">
                 <h3 class="account-heading">{{lang 'account.orders.details.actions'}}</h3>
                 <div class="order-details-info">
@@ -178,7 +178,6 @@
                 </div>
             </section>
         </aside>
-
     </div>
 </div>
 {{/partial}}

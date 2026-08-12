@@ -14,36 +14,194 @@ brand:
 {{/partial}}
 
 {{#partial "page"}}
-{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-{{#if brand.image}}
-    <div class="brand-image-container">
-        {{> components/common/responsive-img
-            image=brand.image
-            fallback_size=theme_settings.thumb_size
-            lazyload='disabled'
-        }}
-    </div>
-{{/if}}
-<h1 class="page-heading">{{brand.name}}</h1>
-{{{region name="brand_below_header"}}}
+
 <div class="page">
-    <aside class="page-sidebar" id="faceted-search-container">
-        {{> components/brand/sidebar}}
-    </aside>
-
-    <div class="page-content" id="product-listing-container">
-        {{#if brand.search_error }}
-            <p>{{lang 'search.errorMessage'}}</p>
-        {{else}}
-            {{#if brand.products}}
-                {{> components/brand/product-listing}}
-            {{else}}
-                <p>{{lang 'brands.no_products'}}</p>
-            {{/if}}
-            {{{region name="brand_below_content"}}}
-        {{/if}}
-    </div>
+    {{#if brand.image}}
+        <div class="brand-image-container">
+            {{> components/common/responsive-img
+                image=brand.image
+                fallback_size=theme_settings.thumb_size
+                lazyload='disabled'
+            }}
+        </div>
+    {{/if}}
+    <h1 class="page-heading">{{brand.name}}</h1>
+    {{{region name="brand_below_header"}}}
+    <div class="page-content page-content--centered">
+		<div class="snize" id="snize_results" data-brand-page="true">
+			<div id="snize_skeleton_results" style="height: 100vh;">
+				<div class="snize-main-panel snize-skeleton-card">
+					<div class="snize-main-panel-controls">
+						<span class="snize-skeleton-text"/>
+						<span class="snize-skeleton-text"/>
+						<span class="snize-skeleton-text"/>
+					</div>
+					<div class="snize-main-panel-dropdown">
+						<span class="snize-skeleton-text snize-full-width"/>
+					</div>
+				</div>
+				<div class="snize-header">
+					<span class="snize-search-results-header snize-skeleton-text snize-full-width"/>
+				</div>
+				<div class="snize-horizontal-filters snize-product-filters">
+					<div class="snize-filters-dropdown snize-skeleton-card small">
+						<span class="snize-skeleton-text snize-full-width"/>
+					</div>
+					<div class="snize-filters-dropdown snize-skeleton-card small">
+						<span class="snize-skeleton-text snize-full-width"/>
+					</div>
+					<div class="snize-filters-dropdown snize-skeleton-card small">
+						<span class="snize-skeleton-text snize-full-width"/>
+					</div>
+				</div>
+				<div class="snize-filters-sidebar snize-product-filters">
+					<div class="snize-product-filters-block snize-skeleton-card">
+						<div class="snize-product-filters-title">
+							<span class="snize-skeleton-text snize-full-width"/>
+						</div>
+						<div class="snize-product-filters-list">
+							<span class="snize-skeleton-text snize-full-width"/>
+							<span class="snize-skeleton-text snize-full-width"/>
+							<span class="snize-skeleton-text snize-full-width"/>
+						</div>
+					</div>
+					<div class="snize-product-filters-block snize-skeleton-card">
+						<div class="snize-product-filters-title">
+							<span class="snize-skeleton-text snize-full-width"/>
+						</div>
+						<div class="snize-product-filters-list">
+							<span class="snize-skeleton-text snize-full-width"/>
+							<span class="snize-skeleton-text snize-full-width"/>
+							<span class="snize-skeleton-text snize-full-width"/>
+						</div>
+					</div>
+					<div class="snize-product-filters-block snize-skeleton-card">
+						<div class="snize-product-filters-title">
+							<span class="snize-skeleton-text snize-full-width"/>
+						</div>
+						<div class="snize-product-filters-list">
+							<span class="snize-skeleton-text snize-full-width"/>
+							<span class="snize-skeleton-text snize-full-width"/>
+							<span class="snize-skeleton-text snize-full-width"/>
+						</div>
+					</div>
+				</div>
+				<div class="snize-search-results-main-content">
+					<div id="snize-search-results-wrapper" class="snize-search-results-grid-mode snize-three-columns">
+						<ul class="snize-search-results-content">
+							<li class="snize-product">
+								<div class="snize-item snize-skeleton-card">
+									<div class="snize-thumbnail-wrapper">
+										<div class="snize-thumbnail"/>
+									</div>
+									<div class="snize-overhidden">
+										<span class="snize-skeleton-text snize-full-width"/>
+										<span class="snize-skeleton-text snize-full-width"/>
+										<span class="snize-skeleton-text snize-full-width"/>
+									</div>
+								</div>
+							</li>
+							<li class="snize-product">
+								<div class="snize-item snize-skeleton-card">
+									<div class="snize-thumbnail-wrapper">
+										<div class="snize-thumbnail"/>
+									</div>
+									<div class="snize-overhidden">
+										<span class="snize-skeleton-text snize-full-width"/>
+										<span class="snize-skeleton-text snize-full-width"/>
+										<span class="snize-skeleton-text snize-full-width"/>
+									</div>
+								</div>
+							</li>
+							<li class="snize-product">
+								<div class="snize-item snize-skeleton-card">
+									<div class="snize-thumbnail-wrapper">
+										<div class="snize-thumbnail"/>
+									</div>
+									<div class="snize-overhidden">
+										<span class="snize-skeleton-text snize-full-width"/>
+										<span class="snize-skeleton-text snize-full-width"/>
+										<span class="snize-skeleton-text snize-full-width"/>
+									</div>
+								</div>
+							</li>
+							<li class="snize-product">
+								<div class="snize-item snize-skeleton-card">
+									<div class="snize-thumbnail-wrapper">
+										<div class="snize-thumbnail"/>
+									</div>
+									<div class="snize-overhidden">
+										<span class="snize-skeleton-text snize-full-width"/>
+										<span class="snize-skeleton-text snize-full-width"/>
+										<span class="snize-skeleton-text snize-full-width"/>
+									</div>
+								</div>
+							</li>
+							<li class="snize-product">
+								<div class="snize-item snize-skeleton-card">
+									<div class="snize-thumbnail-wrapper">
+										<div class="snize-thumbnail"/>
+									</div>
+									<div class="snize-overhidden">
+										<span class="snize-skeleton-text snize-full-width"/>
+										<span class="snize-skeleton-text snize-full-width"/>
+										<span class="snize-skeleton-text snize-full-width"/>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	{{{region name="brand_below_content"}}}
+	</div>
 </div>
+<script>
+(function(window, undefined) {
+    /* Themes hack */
+    var pageContent = document.querySelector('.page:not(.content-page-with-sidenav) > .page-content');
+    var pageSidebar = document.querySelector('.page > .page-sidebar');
 
+    if (pageContent && !pageSidebar) {
+        pageContent.style.width = '100%';
+    }
+
+    var snize_results = document.getElementById('snize_results');
+    if (snize_results != null && snize_results != undefined && snize_results.innerHTML != '') {
+        return;
+    }
+    sInterval = setInterval(function() {
+        var snize_results = document.getElementById('snize_results');
+        if (snize_results && snize_results.innerHTML != '') {
+            clearInterval(sInterval);
+            var skeleton_results = document.getElementById('snize_skeleton_results');
+            if (skeleton_results && skeleton_results.innerHTML != '') {
+                skeleton_results.parentNode.removeChild(skeleton_results);
+            }
+            return;
+        }
+        var grid_wrapper = document.getElementById('snize-search-results-wrapper');
+        if (grid_wrapper) {
+            if (grid_wrapper.offsetWidth >= 1055) {
+                grid_wrapper.className = grid_wrapper.className.replace(/(?:^|\s)snize-three-columns(?!\S)/g, '').replace(/(?:^|\s)snize-four-columns(?!\S)/g, '');
+                if (!grid_wrapper.className.match(/(?:^|\s)snize-five-columns(?!\S)/)) {
+                    grid_wrapper.className += ' snize-five-columns';
+                }
+            } else if (grid_wrapper.offsetWidth >= 915) {
+                grid_wrapper.className = grid_wrapper.className.replace(/(?:^|\s)snize-three-columns(?!\S)/g, '').replace(/(?:^|\s)snize-five-columns(?!\S)/g, '');
+                if (!grid_wrapper.className.match(/(?:^|\s)snize-four-columns(?!\S)/)) {
+                    grid_wrapper.className += ' snize-four-columns';
+                }
+            } else {
+                grid_wrapper.className = grid_wrapper.className.replace(/(?:^|\s)snize-four-columns(?!\S)/g, '').replace(/(?:^|\s)snize-five-columns(?!\S)/g, '');
+                if (!grid_wrapper.className.match(/(?:^|\s)snize-three-columns(?!\S)/)) {
+                    grid_wrapper.className += ' snize-three-columns';
+                }
+            }
+        }
+    }, 30);
+})(window);
+</script>
 {{/partial}}
 {{> layout/base}}

@@ -5,44 +5,34 @@ cart: true
 {{#partial "page"}}
 {{inject 'invalidEntryMessage' (lang 'cart.invalid_entry_message')}}
 <div class="page">
-
-    <div class="page-content" data-cart>
-        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-
+    {{#unless theme_settings.hide_page_heading }}
         {{> components/cart/page-title}}
-
+    {{/unless}}
+    <div class="page-content page-content--centered" data-cart> <!--<div class="page-content" data-cart>-->
         <div data-cart-status>
             {{> components/cart/status-messages}}
         </div>
 
         {{#if cart.items.length}}
             <div class="loadingOverlay"></div>
-
             <div data-cart-content class="cart-content-padding-right">
-                {{> components/cart/content}}
+                    {{> components/cart/content}}
             </div>
-
             <div data-cart-totals class="cart-content-padding-right">
                 {{> components/cart/totals}}
             </div>
-
             {{{region name="cart_below_totals"}}}
 
             {{#or customer (unless settings.hide_price_from_guests)}}
                 {{#if cart.additional_checkout_buttons}}
                     <div data-cart-accelerated-checkout-buttons class="cart-acceleratedCheckoutButtons cart-content-padding-right"></div>
                 {{/if}}
-
                 {{#if cart.show_primary_checkout_button}}
                     <div class="cart-actions cart-content-padding-right">
-                        <a
-                                class="button button--primary"
-                                href="{{urls.checkout.single_address}}"
-                                title="{{lang 'cart.checkout.title'}}"
-                                data-primary-checkout-now-action
-                        >
+                        <a class="button button--primary" href="{{urls.checkout.single_address}}" title="{{lang 'cart.checkout.title'}}" data-primary-checkout-now-action>
                             {{lang 'cart.checkout.button'}}
                         </a>
+                        
                         {{#if cart.show_multiple_address_shipping}}
                             <a class="checkoutMultiple" href="{{urls.checkout.multiple_address}}">
                                 {{lang 'cart.preview.checkout_multiple'}}
@@ -54,7 +44,7 @@ cart: true
                         <a class="button" href="{{urls.home}}" title="{{lang 'cart.continue_shopping'}}">{{lang 'cart.continue_shopping'}}</a>
                     </div>
                 {{/if}}
-
+                
                 {{#if cart.additional_checkout_buttons}}
                     <div data-cart-additional-checkout-buttons class="cart-additionalCheckoutButtons cart-content-padding-right">
                         {{> components/cart/additional-checkout-buttons}}
@@ -65,12 +55,12 @@ cart: true
                     <a class="button" href="{{urls.auth.login}}" title="{{lang 'cart.login_to_checkout'}}">{{lang 'cart.login_to_checkout'}}</a>
                 </div>
             {{/or}}
-
         {{else}}
             <h3 tabindex="0">{{lang 'cart.checkout.empty_cart'}}</h3>
         {{/if}}
-
+    <div id="SA_trust_widget_top_408" class="SA__wrapper" style="padding: 10px 10px 0;"></div><script type="text/javascript">function saLoadScript(src) { var js = window.document.createElement('script'); js.src = src; js.type = 'text/javascript'; document.getElementsByTagName("head")[0].appendChild(js); } if (typeof(shopper_first) == 'undefined') saLoadScript('https://www.shopperapproved.com/trust-widgets/31574/top/408.js'); </script>
     </div>
 </div>
 {{/partial}}
+
 {{> layout/base}}

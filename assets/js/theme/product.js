@@ -8,6 +8,8 @@ import ProductDetails from './common/product-details';
 import videoGallery from './product/video-gallery';
 import { classifyForm } from './common/utils/form-utils';
 import modalFactory from './global/modal';
+import haloMultipleProductOptions from './halothemes/haloMultipleProductOptions';
+import haloStickyAddToCart from './halothemes/haloStickyAddToCart';
 
 export default class Product extends PageManager {
     constructor(context) {
@@ -16,6 +18,7 @@ export default class Product extends PageManager {
         this.$reviewLink = $('[data-reveal-id="modal-review-form"]');
         this.$bulkPricingLink = $('[data-reveal-id="modal-bulk-pricing"]');
         this.reviewModal = modalFactory('#modal-review-form')[0];
+        this.context = context;
     }
 
     onReady() {
@@ -37,6 +40,16 @@ export default class Product extends PageManager {
         videoGallery();
 
         this.bulkPricingHandler();
+
+        // Halo Custom
+        if (this.context.themeSettings.enable_mul_quantity_picklist) {
+            haloMultipleProductOptions(this.context);
+            $('.pick-list-option-default').remove();
+        } else {
+            $('.muiltiple-picklist-wrapper').remove();
+        }
+
+        haloStickyAddToCart($('.productView'), this.context);
 
         const $reviewForm = classifyForm('.writeReview-form');
 

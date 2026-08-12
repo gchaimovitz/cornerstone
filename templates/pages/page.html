@@ -1,7 +1,5 @@
 {{#partial "page"}}
 
-{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-
 <section class="page">
     {{#unless theme_settings.hide_page_heading }}
         <h1 class="page-heading">{{ page.title }}</h1>
@@ -17,13 +15,13 @@
     </nav>
     {{/if}}
 
-    {{{region name="page_builder_content"}}}
-
     <div class="page-content page-content--centered">
         {{#replace '%%Syndicate%%' page.content}}
             {{> components/page/rss_feed}}
         {{else}}
+            {{{region name="page_builder_content"}}}
             <p>{{{page.content}}}</p>
+            {{{region name="page_builder_content_bottom"}}}
         {{/replace}}
     </div>
 
@@ -38,7 +36,6 @@
         </ul>
     {{/if}}
 </section>
-
 {{/partial}}
 
 {{> layout/base}}

@@ -52,13 +52,10 @@
                 {{/if}}
                 {{#if cart.show_primary_checkout_button}}
                     <div class="previewCartAction-checkout">
-                        <a
-                                href="{{urls.checkout.single_address}}"
-                                class="button button--small button--primary"
-                                data-primary-checkout-now-action
-                        >
+                        <a class="button button--small button--primary" href="{{urls.checkout.single_address}}" data-primary-checkout-now-action>
                             {{lang 'cart.preview.checkout_now'}}
                         </a>
+                        
                     </div>
                 {{/if}}
 

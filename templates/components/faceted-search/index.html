@@ -15,7 +15,7 @@
                 {{lang 'search.faceted.hide-filters'}}
 
                 <i class="icon" aria-hidden="true">
-                    <svg><use xlink:href="#icon-keyboard-arrow-up"/></svg>
+                    <svg><use href="#icon-keyboard-arrow-up"/></svg>
                 </i>
             </span>
 
@@ -23,16 +23,18 @@
                 {{lang 'search.faceted.show-filters'}}
 
                 <i class="icon" aria-hidden="true">
-                    <svg><use xlink:href="#icon-keyboard-arrow-down"/></svg>
+                    <svg><use href="#icon-keyboard-arrow-down"/></svg>
                 </i>
             </span>
         </span>
     </a>
 
     {{#any facets visible=true}}
+          
         <div id="facetedSearch-navList"
             class="facetedSearch-navList"
         >
+            <span class="refine_title">Refine by</span>  
             <div class="accordion accordion--navList">
                 {{#each facets}}
                     {{#if visible}}

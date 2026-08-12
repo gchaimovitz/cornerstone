@@ -1,7 +1,6 @@
 {{inject 'passwordRequirements' settings.password_requirements}}
 {{#partial "page"}}
-<div class="account account--fixed">
-    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+<div class="account">
     <h2 class="page-heading">{{lang 'account.settings.heading' }}</h2>
     {{> components/account/navigation account_page='settings'}}
     {{#if forms.edit_account.error}}

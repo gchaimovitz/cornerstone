@@ -29,19 +29,39 @@
     {{/if}}>
     <figure class="card-figure">
         {{#if stock_level '===' 0}}
-            {{#if theme_settings.pdp_sold_out_label '===' ''}}
-                {{> components/products/product-badge
-                    badge-type='sold-out'
-                    badge_view=theme_settings.product_sold_out_badges
-                    badge_label=(lang "page_builder.pdp_sold_out_label")
-                }}
-            {{else}}
-                {{> components/products/product-badge
-                    badge-type='sold-out'
-                    badge_view=theme_settings.product_sold_out_badges
-                    badge_label=theme_settings.pdp_sold_out_label
-                }}
+            {{#if show_cart_action}}
+                {{#if theme_settings.pdp_sold_out_label '===' ''}}
+                    {{> components/products/product-badge
+                        badge-type='sold-out'
+                        badge_view=theme_settings.product_sold_out_badges
+                        badge_label=(lang "page_builder.pdp_sold_out_label")
+                    }}
+                {{else}}
+                    {{> components/products/product-badge
+                        badge-type='sold-out'
+                        badge_view=theme_settings.product_sold_out_badges
+                        badge_label=theme_settings.pdp_sold_out_label
+                    }}
+                {{/if}}
             {{/if}}
+        {{else if has_options '===' false}}
+            {{#and (if stock_level '===' null) show_cart_action}}
+                {{#and (unless add_to_cart_url) (unless pre_order)}}
+                    {{#if theme_settings.pdp_sold_out_label '===' ''}}
+                        {{> components/products/product-badge
+                            badge-type='sold-out'
+                            badge_view=theme_settings.product_sold_out_badges
+                            badge_label=(lang "page_builder.pdp_sold_out_label")
+                        }}
+                    {{else}}
+                        {{> components/products/product-badge
+                            badge-type='sold-out'
+                            badge_view=theme_settings.product_sold_out_badges
+                            badge_label=theme_settings.pdp_sold_out_label
+                        }}
+                    {{/if}}
+                {{/and}}
+            {{/and}}
         {{else}}
             {{#or price.sale_price_with_tax.value price.sale_price_without_tax.value}}
                 {{#if theme_settings.pdp_sale_badge_label '===' ''}}
@@ -66,6 +86,14 @@
            {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}
         >
             <div class="card-img-container">
+                <ul>
+                    <li class="shipping" style="display:none;"><span>Free Shipping</span></li>
+                    <li class="sale" {{#unless price.non_sale_price_without_tax}}style="display: none;"{{/unless}}>
+                        <span>SALE</span>
+                    </li>
+                </ul>
+                
+
                 {{> components/common/responsive-img
                     image=image
                     class="card-image"
@@ -77,37 +105,7 @@
         </a>
 
         <figcaption class="card-figcaption">
-            <div class="card-figcaption-body">
-                {{#unless hide_product_quick_view}}
-                    {{#if theme_settings.show_product_quick_view}}
-                        {{#if settings.data_tag_enabled}}
-                            <button type="button" class="button button--small card-figcaption-button quickview" data-event-type="product-click" data-product-id="{{id}}">{{lang 'products.quick_view'}}</button>
-                        {{else}}
-                            <button type="button" class="button button--small card-figcaption-button quickview" data-product-id="{{id}}">{{lang 'products.quick_view'}}</button>
-                        {{/if}}
-                    {{/if}}
-                {{/unless}}
-                {{#if show_compare}}
-                    <label class="button button--small card-figcaption-button" for="compare-{{id}}">
-                        {{lang 'products.compare'}} <input type="checkbox" name="products[]" value="{{id}}" id="compare-{{id}}" data-compare-id="{{id}}">
-                    </label>
-                {{/if}}
-                {{#if show_cart_action}}
-                    {{#if has_options}}
-                        <a href="{{url}}" data-event-type="product-click" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
-                    {{/if}}
-                    {{#if pre_order}}
-                        <a href="{{pre_order_add_to_cart_url}}" data-event-type="product-click" class="button button--small card-figcaption-button">{{lang 'products.pre_order'}}</a>
-                    {{/if}}
-                    {{#if add_to_cart_url }}
-                        <a href="{{add_to_cart_url}}" data-event-type="product-click" data-button-type="add-cart" class="button button--small card-figcaption-button">{{lang 'products.add_to_cart'}}</a>
-                        <span class="product-status-message aria-description--hidden">{{lang 'category.add_cart_announcement'}}</span>
-                    {{/if}}
-                    {{#if out_of_stock_message }}
-                        <a href="{{url}}" data-event-type="product-click" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{out_of_stock_message}}</a>
-                    {{/if}}
-                {{/if}}
-            </div>
+            
         </figcaption>
     </figure>
     <div class="card-body">
@@ -136,7 +134,73 @@
             {{else}}
                 {{> components/common/login-for-pricing}}
             {{/or}}
+            <div class="star_container {{sku}}" style="text-align: center;"></div>
         </div>
         {{> components/products/bulk-discount-rates}}
+    </div>
+   
+    <div class="card-figcaption-body">
+        {{#if show_cart_action}}
+            {{#if has_options}}
+                <a href="{{url}}" data-event-type="product-click" class="button button--small card-figcaption-button" data-product-id="{{id}}">
+                    <i class="fa-regular fa-circle-info"></i>
+                    {{lang 'products.choose_options'}}</a>
+            {{/if}}
+            {{#if pre_order}}
+                <a href="{{pre_order_add_to_cart_url}}" data-event-type="product-click" class="button button--small card-figcaption-button">
+                    <i class="fa-regular fa-basket-shopping"></i>
+                    {{lang 'products.pre_order'}}</a>
+            {{/if}}
+            {{#if add_to_cart_url }}
+                <a href="{{add_to_cart_url}}" data-event-type="product-click" data-button-type="add-cart" class="button button--small card-figcaption-button">
+                    <i class="fa-regular fa-basket-shopping"></i>
+                    {{lang 'products.add_to_cart'}}</a>
+                <span class="product-status-message aria-description--hidden">{{lang 'category.add_cart_announcement'}}</span>
+            {{/if}}
+            {{#if out_of_stock_message }}
+                <a href="{{url}}" mm-outofstock data-event-type="product-click" class="button button--small card-figcaption-button" data-product-id="{{id}}">
+                    <i class="fa-regular fa-circle-info"></i>
+                    {{out_of_stock_message}}</a>
+            {{/if}}
+
+
+                    <!--
+            {{!-- 
+                MM_ Display msg "out of stock" if not found add_to_cart_url
+                For some reason in cornerstone the value "out_of_stock_message" do not do anything, even if stock is  zero.
+                We will put a extra condition to display out of stock in product listing here:         
+            --}}           
+                {{#unless add_to_cart_url }}
+                    <a href="{{url}}" mm-outofstock class="button button--small card-figcaption-button" data-product-id="{{id}}">
+                        <i class="fa-regular fa-circle-info"></i>
+                        Out of stock</a>
+                {{/unless}}
+            {{!-- End MM_--}}
+            -->
+          
+
+
+
+
+        {{/if}}
+        {{#unless hide_product_quick_view}}
+            {{#if theme_settings.show_product_quick_view}}
+                {{#if settings.data_tag_enabled}}
+                    <button type="button" class="button button--small card-figcaption-button quickview" data-event-type="product-click" data-product-id="{{id}}">
+                        <i class="fa-regular fa-magnifying-glass"></i>
+                        {{lang 'products.quick_view'}}</button>
+                {{else}}
+                    <button type="button" class="button button--small card-figcaption-button quickview" data-product-id="{{id}}">
+                        <i class="fa-regular fa-magnifying-glass"></i>
+                        {{lang 'products.quick_view'}}</button>
+                {{/if}}
+            {{/if}}
+        {{/unless}}
+        {{#if show_compare}}
+            <label class="button button--small card-figcaption-button" for="compare-{{id}}">
+                {{lang 'products.compare'}} <input type="checkbox" name="products[]" value="{{id}}" id="compare-{{id}}" data-compare-id="{{id}}">
+            </label>
+        {{/if}}
+        
     </div>
 </article>

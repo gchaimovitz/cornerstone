@@ -1,0 +1,110 @@
+NO USAR ESTE TEMPLATE, IBA A SER UNA WEBPAGE PAGAR SER DELEGADA COMO HOME PERO ALGUNAS FUNCIONES NO JALAN. 
+
+
+
+---
+products:
+    new:
+        limit: {{theme_settings.homepage_new_products_count}}
+    featured:
+        limit: {{theme_settings.homepage_featured_products_count}}
+    top_sellers:
+        limit: {{theme_settings.homepage_top_products_count}}
+carousel: {{theme_settings.homepage_show_carousel}}
+blog:
+    recent_posts:
+        limit: {{theme_settings.homepage_blog_posts_count}}
+---
+{{#partial "hero"}}
+    {{{region name="home_below_menu"}}}
+    {{#and carousel carousel.slides.length}}
+        {{> components/carousel arrows=theme_settings.homepage_show_carousel_arrows play_pause_button=theme_settings.homepage_show_carousel_play_pause_button}}
+    {{/and}}
+    {{{region name="home_below_carousel"}}}
+{{/partial}}
+{{#partial "page"}}
+
+    {{#each shipping_messages}}
+        {{> components/common/alert/alert-info message}}
+    {{/each}}
+
+{{#if page_type '===' 'page'}}
+{{!-- MM_ The title of the page must be "default" en  backend--}}
+<div class="main full">
+    <section id="mm-block02">
+        <div class="container">
+            <ul>
+                <li><a href="/shipping">
+                    <i class="fa-light fa-truck-fast"></i>
+                    <h3>Free <img src="{{cdn 'img/canada_iconA.svg'}}" width="30"> Shipping</h3>
+                    <span>Over <em>$149</em> & under 40lbs</span>
+                    </a>
+                </li>
+                <li><a href="">
+                    <i class="fa-light fa-map-location-dot"></i>
+                    <h3>2 Hamilton Locations</h3> <span>Easy online <em>+</em> phone ordering</span></a>
+                </li>
+                <li><a href="">
+                    <i class="fa-light fa-laptop-mobile"></i>
+                    <h3>Get social with us</h3> <span>Follow <strong>@tegtools</strong> on social media</span></a>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section id="mm-Featured">    
+        <div class="container">
+        {{#if products.featured}}
+            {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
+        {{/if}}
+        {{{region name="home_below_featured_products"}}}                   
+        </div>
+    </section>
+     {{!-- Display Page content--}}
+    <section id="HomeContent">
+            {{{region name="page_builder_content"}}}
+        
+            <div class="page-content page-content--centered">
+                {{#replace '%%Syndicate%%' page.content}}
+                    {{> components/page/rss_feed}}
+                {{else}}
+                    {{{page.content}}}
+                {{/replace}}
+            </div>
+    </section>
+    <section id="mm-Newproducts">    
+        <div class="container">
+        {{#if products.new}}
+            {{> components/products/new products=products.new columns=theme_settings.homepage_new_products_column_count}}
+        {{/if}}
+        {{{region name="home_below_new_products"}}}
+        </div>
+    </section>
+    <section id="mm-Topsellers">    
+        <div class="container">
+        {{#if products.top_sellers}}
+            {{> components/products/top products=products.top_sellers columns=theme_settings.homepage_top_products_column_count}}
+        {{/if}}
+        {{{region name="home_below_top_products"}}}
+        </div>
+    </section>
+    <section id="mm-FooterB">    
+        <div class="container">
+            <ul>
+                <li>
+                    <a href="/milwaukee-packout-builder" class="footB01">
+
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.stihldealers.ca/go.aspx/36306d43345251573646324734364744365a6e2f56513d3d/?Lang=en" class="footB02">
+                        
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+        
+</div>
+{{/if}}
+{{/partial}}
+{{> layout/base}}

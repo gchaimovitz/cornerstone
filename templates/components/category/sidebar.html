@@ -5,10 +5,19 @@
             <ul class="navList">
                 {{#each category.subcategories}}
                 <li class="navList-item">
+                    {{#if image}}
+                        <a class="navList-img" href="{{url}}" class="subcategories-image"><img src="{{getImage image 'category_card_size'}}" alt="{{name}}"></a>
+                    {{/if}}
                     <a class="navList-action" href="{{url}}" title="{{name}}">{{name}}</a>
                 </li>
                 {{/each}}
             </ul>
+        </div>
+    {{/if}}
+
+    {{#if category.products}} 
+        <div class="mm-sortby">
+        {{> components/products/filter sort=pagination.category.sort}}
         </div>
     {{/if}}
 
@@ -17,4 +26,6 @@
     {{else}}
         {{> components/category/shop-by-price shop_by_price=category.shop_by_price category_url=category.url}}
     {{/if}}
+
+    
 </nav>

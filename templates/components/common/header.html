@@ -1,4 +1,4 @@
-<a href="#main-content" class="skip-to-main-link">{{lang 'header.skip_to_main'}}</a>
+<!--<a href="#main-content" class="skip-to-main-link">{{lang 'header.skip_to_main'}}</a>-->
 {{#if banners.top}}
 <div class="banners" data-banner-location="top">
     {{#each (limit banners.top_metadata 1)}}
@@ -15,20 +15,63 @@
         <span class="mobileMenu-toggleIcon">Toggle menu</span>
     </a>
     {{> components/common/navigation}}
-
-    {{#if page_type '===' 'default'}}
+    <div  class="mm-header">
+        {{#if page_type '===' 'default'}}
         <h1 class="header-logo header-logo--{{theme_settings.logo-position}}">
             {{> components/common/store-logo}}
         </h1>
-    {{else}}
-        <div class="header-logo header-logo--{{theme_settings.logo-position}}">
-            {{> components/common/store-logo}}
+        {{else}}
+            <div class="header-logo header-logo--{{theme_settings.logo-position}}">
+                {{> components/common/store-logo}}                
+            </div>
+        {{/if}}
+        <div class="" id="quickSearch" aria-hidden="true" data-prevent-quick-search-close>
+            {{> components/common/quick-search name='nav-quick-search'}}
         </div>
-    {{/if}}
-    <div class="navPages-container" id="menu" data-menu>
-        {{> components/common/navigation-menu}}
+        <div class="mm-cartMobile navUser-item--cart">
+            <a class="navUser-action"
+            data-cart-preview
+            data-dropdown="cart-preview-dropdown"
+            data-options="align:right"
+            href="{{urls.cart}}"
+            aria-label="{{lang 'cart.nav_aria_label'}}">
+            <span class="navUser-item-cartLabel">{{lang 'common.cart'}}</span>
+            <span class="countPill cart-quantity"></span>
+         </a>
+        </div>
+        <div id="mm-block01">
+            <div class="container">
+                <ul>
+                    <li>    
+                        <a href="/contact-us/" >
+                            <img src="{{cdn 'img/mm-headset.svg'}}"width="32" alt/>
+                            <span class="hdr">Can't find it?</span>
+                            <span>Contact us & we'll get it!</span>
+                        </a>
+                    </li>
+                    <li>    
+                        <a data-cart-preview
+                        data-dropdown="cart-preview-dropdown"
+                        data-options="align:right"
+                        href="{{urls.cart}}"
+                        aria-label="{{lang 'cart.nav_aria_label'}}">
+                            <i class="fa-regular fa-basket-shopping fa-2x"></i>
+                            <span class="hdr">Your cart</span>
+                            <span class="countPill cart-quantity"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>            
+        </div>
+        <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>
     </div>
-    {{{region name="header_navigation_bottom--global"}}}
+    <div class="mm-Mainmenu">
+        <div class="navPages-container" id="menu" data-menu>
+            {{> components/common/navigation-menu}}
+        </div>
+        
+    </div> 
+    {{{region name="header_navigation_bottom--global"}}}    
 </header>
 {{{region name="header_bottom--global"}}}
 {{{region name="header_bottom"}}}

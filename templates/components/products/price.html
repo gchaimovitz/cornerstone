@@ -59,7 +59,7 @@ If you are making a change here or in price-range.html, you probably want to mak
             </span>
         </div>
         <div class="price-section price-section--withoutTax non-sale-price--withoutTax{{#if price.with_tax}} price-section--minor{{/if}}" {{#unless price.non_sale_price_without_tax}}style="display: none;"{{/unless}}>
-            <span>
+            <span> 
                 {{> components/products/price-label
                     label_value=theme_settings.pdp-non-sale-price-label
                     fallback=(lang "page_builder.pdp-non-sale-price-label")
@@ -79,7 +79,7 @@ If you are making a change here or in price-range.html, you probably want to mak
                     fallback=(lang "page_builder.pdp-sale-price-label")
                 }}
             </span>
-            <span data-product-price-without-tax class="price price--withoutTax{{#if price.with_tax}} price-section--minor{{/if}}">{{price.without_tax.formatted}}</span>
+            <span data-product-price-without-tax class="{{#if price.non_sale_price_without_tax}}mm-red{{/if}} price price--withoutTax{{#if price.with_tax}} price-section--minor{{/if}}">{{price.without_tax.formatted}}</span>
             {{#if price.with_tax}}
                 <abbr title="{{lang 'products.excluding_tax'}}">{{lang 'products.price_without_tax' tax_label=price.tax_label}}</abbr>
             {{/if}}
@@ -87,11 +87,13 @@ If you are making a change here or in price-range.html, you probably want to mak
     {{/if}}
     {{#if page_type '===' 'product'}}
          <div class="price-section price-section--saving price" {{#unless price.saved}}style="display: none;"{{/unless}}>
-                <span class="price">{{lang 'products.you_save_opening_text'}}</span>
-                <span data-product-price-saved class="price price--saving">
-                    {{price.saved.formatted}}
-                </span>
-                <span class="price">{{lang 'products.you_save_closing_bracket'}}</span>
+                <div class="you-save">
+                    <span class="price">{{lang 'products.you_save_opening_text'}}</span>
+                    <span data-product-price-saved class="price price--saving">
+                        {{price.saved.formatted}}
+                    </span>
+                    <span class="price">{{lang 'products.you_save_closing_bracket'}}</span>
+                </div>
          </div>
     {{/if}}
 {{/and}}

@@ -1,11 +1,7 @@
 {{#partial "page"}}
-
-    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-
+<div class="account-body">
     <h2 class="page-heading">{{lang 'forms.payment_methods.edit.heading'}}</h2>
-
     {{> components/account/navigation account_page='payment_methods'}}
-
     <div class="account account--fixed">
         {{#if forms.error}}
             {{> components/common/alert/alert-error forms.error}}
@@ -67,5 +63,6 @@
             </form>
         {{/with}}
     </div>
+</div>
 {{/partial}}
 {{> layout/base}}

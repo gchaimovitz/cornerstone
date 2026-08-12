@@ -5,19 +5,31 @@
         </li>
     {{/if}}
     {{#if product.warranty}}
-        <li class="tab {{#unless product.description}}is-active{{/unless}}">
+        <!--<li class="tab {{#unless product.description}}is-active{{/unless}}">
             <a class="tab-title" href="#tab-warranty">{{lang 'products.warranty'}}</a>
+        </li> Removed by Gabe 05/25/2023 -->
+        <li class="tab {{#unless product.description}}is-active{{/unless}}">
+            <a class="tab-title" href="#tab-spec">Specifications</a>
         </li>
     {{/if}}
+    {{#if product.videos.list.length}}
+        <li class="tab {{#unless product.description}}is-active{{/unless}}">
+            <a class="tab-title" href="#tab-videos">Videos</a>
+        </li>
+    {{/if}}
+    <li class="tab {{#unless product.description}}is-active{{/unless}}">
+        <a class="tab-title" href="#tab-reviews">Reviews</a>
+    </li>
+    
     {{#all product.custom_fields theme_settings.show_custom_fields_tabs}}
         <li class="tab">
             <a class="tab-title"
-               href="#tab-{{dashcase (lowercase (sanitize theme_settings.pdp-custom-fields-tab-label))}}"
-            >
+               href="#tab-{{dashcase (lowercase (sanitize theme_settings.pdp-custom-fields-tab-label))}}">
                 {{sanitize theme_settings.pdp-custom-fields-tab-label}}
             </a>
         </li>
     {{/all}}
+    
     {{#all settings.show_product_reviews theme_settings.show_product_reviews product.reviews.total}}
         <li class="tab">
             <a class="tab-title productView-reviewTabLink" href="#tab-reviews">{{lang 'products.reviews.header' total=product.reviews.total}}</a>
@@ -28,13 +40,197 @@
     {{#if product.description}}
         <div class="tab-content is-active" id="tab-description">
             {{{product.description}}}
+            
+            <!--<ul>
+                {{#all product.weight theme_settings.show_product_weight}}
+                <li><span class="">{{lang 'products.weight'}}</span>
+                    <span class="" data-product-weight>{{product.weight}}</span>
+                </li>                   
+                {{/all}}
+                {{#all product.width product.height product.depth theme_settings.show_product_dimensions}}
+                <li><span class="">{{lang 'products.width'}}</span>
+                    <span class="" data-product-width>{{product.width}}
+                        {{#if settings.measurements.length '==' 'Centimeters'}}
+                        ({{lang 'products.measurement.metric'}})
+                        {{else}}
+                        ({{lang 'products.measurement.imperial'}})
+                        {{/if}}
+                    </span>
+                </li>  
+                <li><span class="">{{lang 'products.height'}}</span>
+                    <span class="" data-product-height>{{product.height}}
+                        {{#if settings.measurements.length '==' 'Centimeters'}}
+                        ({{lang 'products.measurement.metric'}})
+                        {{else}}
+                        ({{lang 'products.measurement.imperial'}})
+                        {{/if}}
+                    </span>
+                </li> 
+                <li><span class="">{{lang 'products.depth'}}</span>
+                    <span class="" data-product-depth>{{product.depth}}
+                        {{#if settings.measurements.length '==' 'Centimeters'}}
+                        ({{lang 'products.measurement.metric'}})
+                        {{else}}
+                        ({{lang 'products.measurement.imperial'}})
+                        {{/if}}
+                    </span>
+                </li>
+                {{/all}}
+            </ul>-->
+            
+            <!-- Claude -->
+            <div class="product-specs">
+              {{#all product.weight theme_settings.show_product_weight}}
+              <div class="product-specs__item">
+                <span class="product-specs__label">{{lang 'products.weight'}}</span>
+                <span class="product-specs__value" data-product-weight>{{product.weight}}</span>
+              </div>
+              {{/all}}
+              
+              {{#all product.width product.height product.depth theme_settings.show_product_dimensions}}
+              <div class="product-specs__item">
+                <span class="product-specs__label">{{lang 'products.width'}}</span>
+                <span class="product-specs__value" data-product-width>
+                  {{product.width}}
+                  {{#if settings.measurements.length '==' 'Centimeters'}}
+                  ({{lang 'products.measurement.metric'}})
+                  {{else}}
+                  ({{lang 'products.measurement.imperial'}})
+                  {{/if}}
+                </span>
+              </div>
+             
+              <div class="product-specs__item">
+                <span class="product-specs__label">{{lang 'products.height'}}</span>
+                <span class="product-specs__value" data-product-height>
+                  {{product.height}}
+                  {{#if settings.measurements.length '==' 'Centimeters'}}
+                  ({{lang 'products.measurement.metric'}})
+                  {{else}}
+                  ({{lang 'products.measurement.imperial'}})
+                  {{/if}}
+                </span>
+              </div>
+             
+              <div class="product-specs__item">
+                <span class="product-specs__label">{{lang 'products.depth'}}</span>
+                <span class="product-specs__value" data-product-depth>
+                  {{product.depth}}
+                  {{#if settings.measurements.length '==' 'Centimeters'}}
+                  ({{lang 'products.measurement.metric'}})
+                  {{else}}
+                  ({{lang 'products.measurement.imperial'}})
+                  {{/if}}
+                </span>
+              </div>
+              {{/all}}
+            </div>
+            <div id="flix-inpage" style="visibility:hidden;"></div>
         </div>
     {{/if}}
-    {{#if product.warranty}}
-        <div class="tab-content {{#unless product.description}}is-active{{/unless}}" id="tab-warranty">
-            {{{product.warranty}}}
-        </div>
+    {{#if product.brand.name 'Wera'}}
+        <div class="loadbeeTabContent" data-loadbee-apikey="PEpBUYfvDmJnnSTLfMu82KDzrgXy4XCJ" data-loadbee-gtin="{{product.gtin}}" data-loadbee-locale="en_CA"></div>
+        <script async src="https://cdn.loadbee.com/js/loadbee_integration.js"></script> 
+        <script>loadbeeIntegration.init();</script>
     {{/if}}
+    {{#if product.brand.name 'Milwaukee'}}
+        <script type="text/javascript">
+            jQuery("#flix-minisite").css("visibility", "visible");
+            jQuery("#flix-inpage").css("visibility", "visible");
+            var product_mpn = "{{product.mpn}}"; 
+            var product_ean = "{{product.gtin}}"; 
+            var product_brand = "{{product.brand.name}}"; 
+            var distributor = "18456"; 
+            var language = "b5"; 
+            var fallback_language = "";
+            var headID = document.getElementsByTagName("head")[0]; var flixScript = document.createElement('script'); flixScript.type = 'text/javascript'; flixScript.async = true; flixScript.setAttribute('data-flix-distributor', distributor); flixScript.setAttribute('data-flix-language', language); flixScript.setAttribute('data-flix-fallback-language', fallback_language); flixScript.setAttribute('data-flix-brand', product_brand); flixScript.setAttribute('data-flix-ean', product_ean); flixScript.setAttribute('data-flix-mpn', product_mpn); flixScript.setAttribute('data-flix-inpage', 'flix-inpage'); flixScript.setAttribute('data-flix-button', 'flix-minisite'); flixScript.setAttribute('data-flix-price', ''); headID.appendChild(flixScript); flixScript.src = '//media.flixfacts.com/js/loader.js'; 
+        </script>
+    {{/if}}
+
+    <div class="tab-content {{#unless product.description}}is-active{{/unless}}" id="tab-spec"> <!-- Was tab-warranty, this is from the warranty field Gabe 05/25/2023 -->
+        <span class="productView-info">{{{product.warranty}}}</span>
+    </div>
+
+    <div class="tab-content {{#unless product.description}}is-active{{/unless}}" id="tab-videos">
+        <span class="productView-info">
+            {{> components/products/videos product.videos}}
+        </span>
+    </div>
+
+    <div class="tab-content {{#unless product.description}}is-active{{/unless}}" id="tab-warranty"> <!-- Was tab-spec but don't need this data shown Gabe 05/25/2023 -->
+        <ul class="productView-info">
+            {{#if product.condition}}
+            <li><span class="productView-info-name">{{lang 'products.condition'}}</span>
+                <span class="productView-info-value">{{product.condition}}</span>
+            </li>
+            {{/if}}
+            {{#if product.availability}}
+            <li><span class="productView-info-name">{{lang 'products.availability'}}</span>
+                <span class="productView-info-value">{{product.availability}}</span>
+            </li>
+            {{/if}}
+            {{#all product.weight theme_settings.show_product_weight}}
+            <li><span class="productView-info-name">{{lang 'products.weight'}}</span>
+                <span class="productView-info-value" data-product-weight>{{product.weight}}</span>
+            </li>                   
+            {{/all}}
+            {{#all product.width product.height product.depth theme_settings.show_product_dimensions}}
+            <li><span class="productView-info-name">{{lang 'products.width'}}</span>
+                <span class="productView-info-value" data-product-width>{{product.width}}
+                    {{#if settings.measurements.length '==' 'Centimeters'}}
+                    ({{lang 'products.measurement.metric'}})
+                    {{else}}
+                    ({{lang 'products.measurement.imperial'}})
+                    {{/if}}
+                </span>
+            </li>  
+            <li><span class="productView-info-name">{{lang 'products.height'}}</span>
+                <span class="productView-info-value" data-product-height>
+                    {{product.height}}
+                    {{#if settings.measurements.length '==' 'Centimeters'}}
+                    ({{lang 'products.measurement.metric'}})
+                    {{else}}
+                    ({{lang 'products.measurement.imperial'}})
+                    {{/if}}
+                </span>
+            </li> 
+            <li><span class="productView-info-name">{{lang 'products.depth'}}</span>
+                <span class="productView-info-value" data-product-depth>
+                    {{product.depth}}
+                    {{#if settings.measurements.length '==' 'Centimeters'}}
+                    ({{lang 'products.measurement.metric'}})
+                    {{else}}
+                    ({{lang 'products.measurement.imperial'}})
+                    {{/if}}
+                </span>
+            </li>
+            {{/all}}
+            {{#if product.min_purchase_quantity}}
+            <li><span class="productView-info-name">{{lang 'products.min_purchase_quantity'}}</span>
+                <span class="productView-info-value">{{lang 'products.purchase_units' quantity=product.min_purchase_quantity}}</span>
+            </li>
+            {{/if}}
+            {{#if product.max_purchase_quantity}}
+            <li><span class="productView-info-name">{{lang 'products.max_purchase_quantity'}}</span>
+                <span class="productView-info-value">{{lang 'products.purchase_units' quantity=product.max_purchase_quantity}}</span>
+            </li>                   
+            {{/if}}
+            {{#if product.gift_wrapping_available}}
+            <li><span class="productView-info-name">{{lang 'products.gift_wrapping'}}</span>
+                <span class="productView-info-value">{{lang 'products.gift_wrapping_available'}}</span>
+            </li>                    
+            {{/if}}
+            {{#if theme_settings.show_custom_fields_tabs '!==' true}}
+                {{> components/products/custom-fields }}
+            {{/if}}
+        </ul>
+    </div>
+
+    <div class="tab-content {{#unless product.description}}is-active{{/unless}}" id="tab-reviews"><!--REviews content JS-->
+            <!-- ShopperApproved Reviews -->
+            <div id="SA_review_wrapper" ></div><script type="text/javascript">var sa_product = '{{product.sku}}'; var sa_interval = 5000;function saLoadScript(src) { var js = window.document.createElement('script'); js.src = src; js.type = 'text/javascript'; document.getElementsByTagName("head")[0].appendChild(js); } if (typeof(shopper_first) == 'undefined') saLoadScript('https://www.shopperapproved.com/widgets/31574/product/'+sa_product+'/product-widget/f21pbT0Jv5XC.js'); </script>
+    </div>
+
     {{#all product.custom_fields theme_settings.show_custom_fields_tabs}}
       <div class="tab-content" id="tab-{{dashcase (lowercase (sanitize theme_settings.pdp-custom-fields-tab-label))}}">
          <dl class="productView-info">

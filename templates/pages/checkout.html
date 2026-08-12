@@ -31,7 +31,13 @@
 {{{ checkout.checkout_content }}}
 
 {{{ footer.scripts }}}
-
+{{#unless customer.customer_group_name '===' 'B2B'}}
+<style>
+li.checkout-step.optimizedCheckout-checkoutStep.checkout-step--payment .form-checklist-item.optimizedCheckout-form-checklist-item:nth-child(3) {
+    display: none;
+}
+</style>
+{{/unless}}
 {{/partial}}
 
 {{> layout/empty}}

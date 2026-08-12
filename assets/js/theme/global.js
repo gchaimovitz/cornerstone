@@ -13,6 +13,7 @@ import cartPreview from './global/cart-preview';
 import privacyCookieNotification from './global/cookieNotification';
 import carousel from './common/carousel';
 import svgInjector from './global/svg-injector';
+import haloAZBrands from './halothemes/haloAZBrands';
 
 export default class Global extends PageManager {
     onReady() {
@@ -27,5 +28,9 @@ export default class Global extends PageManager {
         mobileMenuToggle();
         privacyCookieNotification();
         svgInjector();
+
+        if ($('#haloAZBrandsTable').length) {
+            haloAZBrands(this.context);
+        }
     }
 }

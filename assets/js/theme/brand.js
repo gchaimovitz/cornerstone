@@ -3,6 +3,7 @@ import CatalogPage from './catalog';
 import compareProducts from './global/compare-products';
 import FacetedSearch from './common/faceted-search';
 import { createTranslationDictionary } from '../theme/common/utils/translations-utils';
+import InfiniteScroll from 'infinite-scroll';
 
 export default class Brand extends CatalogPage {
     constructor(context) {
@@ -19,6 +20,17 @@ export default class Brand extends CatalogPage {
             this.onSortBySubmit = this.onSortBySubmit.bind(this);
             hooks.on('sortBy-submitted', this.onSortBySubmit);
         }
+		function infiniteScroll() {
+            const elem = document.querySelector('.productGrid');
+            const infScroll = new InfiniteScroll(elem, {
+            // options
+                path: '.pagination-item--next .pagination-link',
+                append: '.product',
+                history: false,
+            });
+            return infScroll;
+        }
+        infiniteScroll();
     }
 
     initFacetedSearch() {

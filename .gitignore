@@ -6,8 +6,9 @@ secrets.stencil.json
 assets/css-artifacts
 assets/js/bundle.js
 assets/dist
+parsed/
 vendor/bundle
 .bundle
 *.js.map
 *.zip
-.idea/
+.idea

@@ -4,9 +4,10 @@
         "skip_to_main": "Skip to main content"
     },
     "footer": {
+
         "title": "Footer Start",
         "brands": "Popular Brands",
-        "navigate": "Navigate",
+        "navigate": "Customer Service",
         "info": "Info",
         "categories": "Categories",
         "call_us": "Call us at {phone_number}",
@@ -46,7 +47,7 @@
                 "multiple": "check out with multiple addresses",
                 "or": "or"
             },
-            "button": "Check out",
+            "button": "CHECKOUT",
             "empty_cart": "Your cart is empty",
             "title": "Click here to proceed to checkout",
             "item": "Item",
@@ -62,9 +63,9 @@
             "update": "Update shipping cost"
         },
         "preview": {
-            "checkout_now": "Check out now",
+            "checkout_now": "CHECKOUT",
             "checkout_multiple": "or check out with multiple addresses",
-            "view_cart": "View Cart"
+            "view_cart": "VIEW CART"
         },
         "label": "Your Cart ({quantity, plural, one {# item} other {# items}})",
         "is_empty": "Your cart is empty",
@@ -165,7 +166,7 @@
         "login": "Sign in",
         "login_for_pricing": "Log in for pricing",
         "logout": "Sign out",
-        "account": "Account",
+        "account": "My Account",
         "cart": "Cart",
         "search": "Search",
         "gift_cert": "Gift Certificates",
@@ -184,7 +185,7 @@
         "next": "Next",
         "sorter": {
             "relevance": "Relevance",
-            "sort_by": "Sort By:",
+            "sort_by": "Sort By",
             "featured": "Featured Items",
             "top_sellers": "Best Selling",
             "newest": "Newest Items",
@@ -436,6 +437,7 @@
             "reason": "Return Reason",
             "action": "Return Action",
             "comments": "Your Comments",
+            "submit_request": "Submit Return Request",
             "list": {
                 "return_number": "Return #{id}",
                 "product_details": "Returning {num_products}"
@@ -705,7 +707,7 @@
     },
     "products": {
         "current_stock": "Current Stock:",
-        "quantity": "Quantity:",
+        "quantity": "Quantity",
         "change_product_options": "Change options for {name}",
         "quantity_decrease": "Decrease Quantity of {name}",
         "quantity_increase": "Increase Quantity of {name}",
@@ -714,7 +716,7 @@
         "max_purchase_quantity": "Maximum Purchase:",
         "min_purchase_quantity": "Minimum Purchase:",
         "related_products": "Related Products",
-        "top": "Most Popular Products",
+        "top": "Best Sellers",
         "similar_by_views": "Customers Also Viewed",
         "featured": "Featured Products",
         "file_option_set": "Currently: <a href=\"{url}\" target=\"_blank\">{name}</a>",
@@ -757,7 +759,7 @@
         "adding_to_cart": "Adding to cart…",
         "options": "Options",
         "none": "None",
-        "sku": "SKU:",
+        "sku": "Part Number:",
         "upc": "UPC:",
         "condition": "Condition:",
         "availability": "Availability:",
@@ -767,6 +769,7 @@
         "shipping_free": "Free Shipping",
         "shipping_calculated": "Calculated at Checkout",
         "sold_out": "Sold Out",
+        "out_of_stock_default_message": "Sold Out",
         "pre_order": "Pre-Order Now",
         "choose_options": "Choose Options",
         "quick_view": "Quick view",
@@ -789,8 +792,8 @@
             "metric": "cm",
             "imperial": "in"
         },
-        "you_save_opening_text": "(You save",
-        "you_save_closing_bracket": ")",
+        "you_save_opening_text": "You Save",
+        "you_save_closing_bracket": " ",
         "gift_wrapping": "Gift wrapping:",
         "gift_wrapping_available": "Options available",
         "quantity_min": "The minimum purchasable quantity is {quantity}",
@@ -850,7 +853,7 @@
         "errorMessage": "There was a problem retrieving your results. Please try again in a few seconds.",
         "quick_search": {
             "input_label": "Search",
-            "input_placeholder": "Search the store"
+            "input_placeholder": "Search"
         },
         "results": {
             "form_label": "Search Keyword:",
@@ -971,10 +974,10 @@
         "invalid_gift_certificate": "Please enter your valid certificate code."
     },
     "page_builder": {
-        "pdp_sale_badge_label": "On Sale!",
+        "pdp_sale_badge_label": "On Sale",
         "pdp_sold_out_label": "Sold Out",
         "pdp-sale-price-label": "Now:",
-        "pdp-non-sale-price-label": "Was:",
+        "pdp-non-sale-price-label": "Reg:",
         "pdp-retail-price-label": "MSRP:",
         "pdp-custom-fields-tab-label": "Additional Information"
     },
