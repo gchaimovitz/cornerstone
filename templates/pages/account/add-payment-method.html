@@ -26,7 +26,9 @@
 {{inject 'providerId' forms.provider}}
 {{inject 'currencyCode' currency_selector.active_currency_code}}
 {{inject 'paymentProviderInitializationData' initialization_data}}
-{{{inject 'storeLocale' settings.request.locale }}}
+{{inject 'storeLocale' settings.request.locale }}
+{{inject 'themeSettings' theme_settings}}
+
 <div class="account">
     <h2 class="page-heading">{{lang 'forms.payment_methods.add.heading'}}</h2>
     {{> components/account/navigation account_page='payment_methods'}}
