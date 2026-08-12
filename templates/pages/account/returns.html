@@ -1,5 +1,5 @@
 {{#partial "page"}}
-<div class="account">
+<main class="account">
     <h2 class="page-heading">{{lang 'account.returns.heading'}}</h2>
     {{> components/account/navigation account_page='returns'}}
     {{#if customer.returns}}
@@ -7,6 +7,6 @@
     {{else}}
         {{> components/common/alert/alert-info (lang 'account.returns.none')}}
     {{/if}}
-</div>
+</main>
 {{/partial}}
 {{> layout/base}}

@@ -1,6 +1,5 @@
 ---
 category:
-    shop_by_price: true
     products:
         limit: {{theme_settings.categorypage_products_per_page}}
 ---
@@ -29,9 +28,8 @@ category:
         {{#if category.description}}
             <h1 class="page-heading">{{category.description}}</h1>
         {{else}}
-            <h1 class="page-heading">{{{category.name}}}</h2>
+            <h1 class="page-heading">{{{category.name}}}</h1>
         {{/if}}
-        {{{region name="category_below_header"}}}
     {{/unless}}
     {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
     <!--<span style="text-align:center;visibility:hidden;height:1px;display:block;">{{{category.description}}}</span>-->
@@ -184,7 +182,9 @@ category:
         	</div>
         </div>
     </div>
-    {{{region name="category_below_content"}}}
+    <div class="page-region">
+        {{{region name="category_below_content"}}}
+    </div>
 </div>
 <script>
 (function(window, undefined) {

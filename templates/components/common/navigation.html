@@ -9,6 +9,9 @@
     <div id="navBanner">
         <p><a href="/shipping"><i class="fa-regular fa-truck-fast"></i> <strong>FREE SHIPPING ACROSS CANADA</strong> / Over $149 & Under 40lbs</a></p>
     </div>
+    {{#if theme_settings.show_channels}}
+        {{> components/common/channel-selector}}
+    {{/if}}
     <ul class="navUser-section navUser-section--alt">
         <li class="navUser-item navUser-item--account">
                 <a class="navUser-action"

@@ -4,7 +4,7 @@ customer:
         limit: 10
 ---
 {{#partial "page"}}
-<div class="account">
+<main class="account">
     <h1 class="page-heading">{{lang 'account.orders.heading' }}</h1>
     {{> components/account/navigation account_page='orders'}}
     <div class="account-head">
@@ -22,6 +22,6 @@ customer:
             {{> components/common/alert/alert-info (lang 'account.orders.none')}}
         {{/if}}
     </div>
-</div>
+</main>
 {{/partial}}
 {{> layout/base}}

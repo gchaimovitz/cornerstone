@@ -16,7 +16,7 @@ blog:
 
 {{#partial "page"}}
 
-<section class="page">
+<main class="page">
     {{#unless theme_settings.hide_blog_page_heading }}
         <h1 class="page-heading">{{ blog.name }}</h1>
     {{/unless}}
@@ -26,7 +26,7 @@ blog:
     {{/each}}
 
     {{> components/common/paginator pagination.blog}}
-    </div>
-</section>
+</main>
+
 {{/partial}}
 {{> layout/base}}

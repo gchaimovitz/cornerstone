@@ -1,5 +1,5 @@
 {{#partial "page"}}
-<div class="account">
+<main class="account">
     <h2 class="page-heading">{{lang 'account.messages.heading'}}</h2>
     {{> components/account/navigation account_page='messages'}}
     {{#if forms.inbox.error}}
@@ -10,6 +10,6 @@
     {{/if}}
     {{> components/account/messages-list messages=customer.inbox.messages}}
     {{> components/account/messages-form}}
-</div>
+</main>
 {{/partial}}
 {{> layout/base}}

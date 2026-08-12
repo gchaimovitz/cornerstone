@@ -1,10 +1,12 @@
 {{#partial "page"}}
 
-<section class="page">
+<main class="page">
     {{#unless theme_settings.hide_page_heading }}
         <h1 class="page-heading">{{lang 'brand.label'}}</h1>
     {{/unless}}
-    
+
+    {{{region name="brands_below_header"}}}
+
     <div class="page-content page-content--centered">
         {{#if theme_settings.halo_brandAZlayout}}
             {{> components/halothemes/brand/halo-azbrand}}
@@ -14,7 +16,7 @@
                     <li class="brand">
                         <article class="card {{#if alternate}}card--alternate{{/if}}">
                             <figure class="card-figure">
-                                <a class="card-figure__link" aria-label="{{name}}" href="{{url}}?category=609">
+                                <a class="card-figure__link" aria-label="{{name}}" href="{{url}}">
                                     <div class="card-img-container">
                                         {{> components/common/responsive-img
                                             image=image
@@ -26,6 +28,7 @@
                                     </div>
                                 </a>
                             </figure>
+
                             <div class="card-body">
                                 <h3 class="card-title">
                                     <a href="{{url}}">{{name}}</a>
@@ -35,9 +38,13 @@
                     </li>
                 {{/each}}
             </ul>
+
             {{> components/common/paginator pagination.brands}}
         {{/if}}
     </div>
-</section>
+
+    {{{region name="brands_below_content"}}}
+</main>
+
 {{/partial}}
 {{> layout/base}}
