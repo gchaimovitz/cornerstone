@@ -5,9 +5,9 @@ import 'foundation-sites/js/foundation/foundation.reveal';
 import ImageGallery from '../product/image-gallery';
 import modalFactory, { alertModal, showAlertModal } from '../global/modal';
 import { isEmpty, isPlainObject } from 'lodash';
-import nod from '../common/nod';
-import { announceInputErrorMessage } from '../common/utils/form-utils';
-import forms from '../common/models/forms';
+import nod from './nod';
+import { announceInputErrorMessage } from './utils/form-utils';
+import forms from './models/forms';
 import { normalizeFormData } from './utils/api';
 import { isBrowserIE, convertIntoArray } from './utils/ie-helpers';
 import bannerUtils from './utils/banner-utils';
@@ -1057,14 +1057,13 @@ export default class ProductDetails extends ProductDetailsBase {
     }
 
     updateDateSelector() {
-        $(document).ready(() => {
-            const monthSelector = $('#month-selector');
-            const daySelector = $('#day-selector');
-            const yearSelector = $('#year-selector');
-
-            const updateDays = () => {
-                const month = parseInt(monthSelector.val(), 10);
-                const year = parseInt(yearSelector.val(), 10);
+        this.$scope.each((i, scope) => {
+            function updateDays(dateOption) {
+                const monthSelector = dateOption.querySelector('select[name$="[month]"]');
+                const daySelector = dateOption.querySelector('select[name$="[day]"]');
+                const yearSelector = dateOption.querySelector('select[name$="[year]"]');
+                const month = parseInt(monthSelector.value, 10);
+                const year = parseInt(yearSelector.value, 10);
                 let daysInMonth;
 
                 if (!Number.isNaN(month) && !Number.isNaN(year)) {
@@ -1079,17 +1078,28 @@ export default class ProductDetails extends ProductDetailsBase {
                         daysInMonth = 31;
                     }
 
-                    daySelector.empty();
-
-                    for (let i = 1; i <= daysInMonth; i++) {
-                        daySelector.append($('<option></option>').val(i).text(i));
+                    for (let day = 29; day <= 31; day++) {
+                        const option = daySelector.querySelector(`option[value="${day}"]`);
+                        if (day <= daysInMonth && !option) {
+                            daySelector.options.add(new Option(day, day));
+                        } else if (day > daysInMonth && option) {
+                            option.remove();
+                        }
                     }
                 }
-            };
+            }
 
-            monthSelector.on('change', updateDays);
-            yearSelector.on('change', updateDays);
-            updateDays();
+            $(scope).on('change', (e) => {
+                const dateOption = e.target && e.target.closest && e.target.closest('[data-product-attribute=date]');
+
+                if (dateOption) {
+                    updateDays(dateOption);
+                }
+            });
+
+            scope.querySelectorAll('[data-product-attribute=date]').forEach(dateOption => {
+                updateDays(dateOption);
+            });
         });
     }
 }

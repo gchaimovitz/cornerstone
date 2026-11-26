@@ -12,10 +12,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Gift certificate CSS properties are applied to page after previewing Gift certificate on storefront [#2330](https://github.com/bigcommerce/cornerstone/pull/2330)
 - Translation Gap: Submit Return Request button [#2331](https://github.com/bigcommerce/cornerstone/pull/2331)
 
+## 6.17.0 (10-01-2025)
+- Add net-new "order.pickup_addresses" to unify objects used on Order Details and Order Invoice pages [#2557](https://github.com/bigcommerce/cornerstone/pull/2557)
+- Removed banner widget configuration and related translations [#2561](https://github.com/bigcommerce/cornerstone/pull/2561)
+- Add support for shipping discounts in "order.total_rows" for use on the Order Details and Order Invoice pages [#2568](https://github.com/bigcommerce/cornerstone/pull/2568)
+- Updates eslint to v8 [#2570](https://github.com/bigcommerce/cornerstone/pull/2570)
+
+## 6.16.2 (06-18-2025)
+- Restore indentation and quote rules to match BC Sass Style Guide [#2554](https://github.com/bigcommerce/cornerstone/pull/2554)
+- Patch security vulnerabilities [#2548](https://github.com/bigcommerce/cornerstone/pull/2548)
+- Update code standards based on updated linter expectancies [#2548](https://github.com/bigcommerce/cornerstone/pull/2548)
+
+## 6.16.1 (02-14-2025)
+- Refactor cart, payment account page inline event handlers to event listeners [#2536](https://github.com/bigcommerce/cornerstone/pull/2536)
+- Cornerstone update to support multiple date fields and remove blank space [#2533](https://github.com/bigcommerce/cornerstone/pull/2533)
+- Updated check for showing/hiding available wallet buttons on PDP [#2532](https://github.com/bigcommerce/cornerstone/pull/2532)
+
 ## 6.16.0 (01-15-2025)
-- Remove escaping of "=" symbol for <head> for blog and brand [#2528](https://github.com/bigcommerce/cornerstone/pull/2528)
+- Remove escaping of "=" symbol for \<head\> for blog and brand [#2528](https://github.com/bigcommerce/cornerstone/pull/2528)
 - Add nonce to scripts in checkout and account pages [#2525](https://github.com/bigcommerce/cornerstone/pull/2525)
-- Remove escaping of "=" symbol for <head> [#2526](https://github.com/bigcommerce/cornerstone/pull/2526)
+- Remove escaping of "=" symbol for \<head\> [#2526](https://github.com/bigcommerce/cornerstone/pull/2526)
 - Add Karla 700 font weight to schema.json and remove italic versions [#2522](https://github.com/bigcommerce/cornerstone/pull/2522)
 - Fix product filter display name in Show More modal window [#2510](https://github.com/bigcommerce/cornerstone/pull/2510)
 - Fix colour value for carousel play-pause button [#2509](https://github.com/bigcommerce/cornerstone/pull/2509)
