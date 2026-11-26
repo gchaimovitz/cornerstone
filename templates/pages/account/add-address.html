@@ -5,21 +5,22 @@
     {{else}}
         <h2 class="page-heading">{{lang 'forms.address.add.heading'}}</h2>
     {{/if}}
+
     {{> components/account/navigation account_page='addresses'}}
+
     <div class="account-body">
         {{#if forms.address.error}}
             {{> components/common/alert/alert-error forms.address.error}}
         {{/if}}
 
-        <div class="account-body">
-
+        <section class="account-content">
             <form action="{{forms.address.action}}" data-address-form class="form" method="post">
-                {{#if forms.address.address_id }}
+                {{#if forms.address.address_id}}
                     <input type="hidden" name="shipid" value="{{forms.address.address_id}}">
                 {{/if}}
                 <fieldset class="form-fieldset">
                     <div class="form-row form-row--half">
-                        {{#each forms.address.shipping_fields }}
+                        {{#each forms.address.shipping_fields}}
                             {{{dynamicComponent 'components/common/forms'}}}
                         {{/each}}
                     </div>
@@ -31,8 +32,7 @@
                     {{inject 'state_error' (lang 'errors.state_error')}}
                 </div>
             </form>
-
-        </div>
+        </section>
     </div>
 </div>
 {{/partial}}

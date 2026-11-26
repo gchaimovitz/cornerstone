@@ -648,7 +648,8 @@ body .quickSearchResults {
         .non-sale-price--withoutTax {
           color: #757575;
         }
-        .price--withoutTax {
+        .price.price--withoutTax,
+        .price--withoutTax [data-product-price-without-tax] {
           font-size: 20px;
         }
         .card-figcaption-body {
@@ -1672,8 +1673,8 @@ li.product {
         font-size: 14px;
       }
     }
-    .price--withoutTax {
-      // .price-section--withoutTax class is for Compare page.
+    .price.price--withoutTax,
+    .price--withoutTax [data-product-price-without-tax] {
       font-family: "Chivo", sans-serif;
       color: $black;
       font-size: 27px; //38px;
@@ -3093,7 +3094,8 @@ li.product {
             clear: both; //Reset floats after price
           }
         }
-        .price--withoutTax {
+        .price.price--withoutTax,
+        .price--withoutTax [data-product-price-without-tax] {
           font-family: "Chivo", sans-serif;
           color: $black;
           font-size: 48px;
