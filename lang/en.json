@@ -94,7 +94,8 @@
             "button": "Apply",
             "coupon_code": "Enter your coupon code",
             "code_label": "Coupon ({code})",
-            "remove": "Remove"
+            "remove": "Remove",
+            "maximum_discount_applied": "Maximum discount applied"
         },
         "gift_certificates": {
             "apply_gift_certificate": "Apply gift certificate",
@@ -152,6 +153,8 @@
         "currency_switch_promotion" : "Promotions and gift certificates that don't apply to the new currency will be removed from your cart. Are you sure you want to continue?",
         "channel": "Store: {code}",
         "channel_switch_warning" : "Warning text for store switching",
+        "locale_switch_warning" : "Warning text for language switching",
+        "locale": "Language:",
         "newsletter_signup": "Register for our newsletter",
         "form_submit": "Submit",
         "no_preference": "No Preference",
@@ -728,6 +731,8 @@
         "change_product_options": "Change options for {name}",
         "quantity_decrease": "Decrease Quantity of {name}",
         "quantity_increase": "Increase Quantity of {name}",
+        "quantity_backordered": "{quantity} will be backordered",
+        "quantity_on_hand": "{quantity} ready to ship",
         "quantity_error_message":"The quantity should contain only numbers",
         "purchase_units": "{quantity, plural, =0{0 units} one {# unit} other {# units}}",
         "max_purchase_quantity": "Maximum Purchase:",
@@ -823,7 +828,11 @@
             "range": "Buy {min} {max, plural, =0{or above} other {- #}}",
             "percent": "and get {discount} off",
             "price": "and get {discount} off",
-            "fixed": "and pay only {discount} each"
+            "fixed": "and pay only {discount} each",
+            "fixed_both": {
+                "prefix": "and pay only",
+                "suffix": "each"
+            }
         },
         "card_default_image_alt": "Image coming soon"
     },

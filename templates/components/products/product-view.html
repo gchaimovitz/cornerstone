@@ -1,4 +1,12 @@
 {{inject 'outOfStockDefaultMessage' (lang 'products.out_of_stock_default_message')}}
+{{inject 'availableOnHand' product.available_on_hand}}
+{{inject 'availableForBackorder' product.available_for_backorder}}
+{{inject 'availableToSell' product.available_to_sell}}
+{{inject 'showBackorderAvailabilityPrompt' product.show_backorder_availability_prompt}}
+{{inject 'backorderAvailabilityPrompt' product.backorder_availability_prompt}}
+{{inject 'quantityBackorderedMessage' (lang 'products.quantity_backordered' quantity='__QTY__')}}
+{{inject 'backorderMessages' backorder_messages}}
+{{inject 'showBackorderMessage' product.show_backorder_message}}
 
 <div class="productView"
     data-event-type="product"
@@ -282,20 +290,27 @@
             {{#if product.cart_order_source}}
                 <input type="hidden" name="cart_order_source" value="{{product.cart_order_source}}"/>
             {{/if}}
+
             <div data-product-option-change style="display:none;">
                 {{inject 'showSwatchNames' theme_settings.show_product_swatch_names}}
                 {{#each product.options}}
                     {{{dynamicComponent 'components/products/options'}}}
                 {{/each}}
             </div>
+
+            {{#all product.show_backorder_availability_prompt product.available_to_sell product.available_for_backorder}}
+                <span class="productView-backorder-availability-prompt" data-backorder-prompt>({{product.backorder_availability_prompt}})</span>
+            {{else}}
+                <span class="productView-backorder-availability-prompt" data-backorder-prompt style="display:none;"></span>
+            {{/all}}
+
+            <p class="form-label form-label--alternate" data-product-backordered style="display:none;">
+                <span data-qty-backordered-message></span>
+                <span data-backorder-message></span>
+            </p>
+
             {{> components/products/add-to-cart with_wallet_buttons=true}}
-            <!--{{#if product.out_of_stock}}
-                {{#if product.out_of_stock_message}}
-                    {{> components/common/alert/alert-error product.out_of_stock_message}}
-                {{else}}
-                    {{> components/common/alert/alert-error (lang 'products.sold_out')}}
-                {{/if}}                    
-            {{/if}}-->
+
         </form>
         {{#if settings.show_wishlist}}
             {{> components/common/wishlist-dropdown}}

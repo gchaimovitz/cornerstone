@@ -90,7 +90,8 @@
             "coupon_code": "Saisissez votre code promotionnel",
             "code_label": "Code promotionnel ({code})",
             "remove": "Supprimer",
-            "apply_coupon_code": "Appliquer le code promotionnel"
+            "apply_coupon_code": "Appliquer le code promotionnel",
+            "maximum_discount_applied": "Remise maximale appliquée"
         },
         "gift_certificates": {
             "apply_gift_certificate": "Appliquer le chèque-cadeau",
@@ -222,7 +223,9 @@
             "10": "Oct.",
             "11": "Nov.",
             "12": "Déc."
-        }
+        },
+        "locale_switch_warning": "Texte d'avertissement pour le changement de langue",
+        "locale": "Langue :"
     },
     "compare": {
         "button": "Comparer les produits",
@@ -820,9 +823,15 @@
             "range": "Acheter {min} {max, plural, =0{ou plus} other {- #}}",
             "percent": "et bénéficiez de {discount} de remise",
             "price": "et bénéficiez de {discount} de remise",
-            "fixed": "et ne payez que {discount} l'unité"
+            "fixed": "et ne payez que {discount} l'unité",
+            "fixed_both": {
+                "prefix": "et ne payez que",
+                "suffix": "L'unité"
+            }
         },
-        "card_default_image_alt": "Image disponible bientôt"
+        "card_default_image_alt": "Image disponible bientôt",
+        "quantity_backordered": "{quantity} seront en attente de réapprovisionnement",
+        "quantity_on_hand": "{quantity} prêt·s pour expédition"
     },
     "invoice": {
         "for_order": "Facture {name} de la commande n° {id}",

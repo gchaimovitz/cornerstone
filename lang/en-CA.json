@@ -90,7 +90,8 @@
             "coupon_code": "Enter your coupon code",
             "code_label": "Coupon ({code})",
             "remove": "Remove",
-            "apply_coupon_code": "Apply coupon code"
+            "apply_coupon_code": "Apply coupon code",
+            "maximum_discount_applied": "Maximum discount applied"
         },
         "gift_certificates": {
             "apply_gift_certificate": "Apply gift certificate",
@@ -222,7 +223,9 @@
             "10": "Oct",
             "11": "Nov",
             "12": "Dec"
-        }
+        },
+        "locale_switch_warning": "Warning text for language switching",
+        "locale": "Language:"
     },
     "compare": {
         "button": "Compare Products",
@@ -820,9 +823,15 @@
             "range": "Buy {min} {max, plural, =0{or above} other {- #}}",
             "percent": "and get {discount} off",
             "price": "and get {discount} off",
-            "fixed": "and pay only {discount} each"
+            "fixed": "and pay only {discount} each",
+            "fixed_both": {
+                "prefix": "and pay only",
+                "suffix": "each"
+            }
         },
-        "card_default_image_alt": "Image coming soon"
+        "card_default_image_alt": "Image coming soon",
+        "quantity_backordered": "{quantity} will be backordered",
+        "quantity_on_hand": "{quantity} ready to ship"
     },
     "invoice": {
         "for_order": "{name} Invoice for Order #{id}",

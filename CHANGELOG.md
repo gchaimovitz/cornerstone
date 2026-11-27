@@ -12,6 +12,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Gift certificate CSS properties are applied to page after previewing Gift certificate on storefront [#2330](https://github.com/bigcommerce/cornerstone/pull/2330)
 - Translation Gap: Submit Return Request button [#2331](https://github.com/bigcommerce/cornerstone/pull/2331)
 
+## 6.19.1 (04-09-2026)
+- Update stencil-utils versionto 6.23.0 [#2638](https://github.com/bigcommerce/cornerstone/pull/2638)
+- Audit and fix Stencil theme remote API calls for multi-language subfolder support [#2635](https://github.com/bigcommerce/cornerstone/pull/2635)
+- Update stencil-utils versionto 6.22.0 [#2637](https://github.com/bigcommerce/cornerstone/pull/2637)
+- Fix incorrect request URL for adding items to cart on multi-lang storefronts [#2634](https://github.com/bigcommerce/cornerstone/pull/2634)
+- Fix desktop header selectors layout for Language, Currency, and Channel [#2633](https://github.com/bigcommerce/cornerstone/pull/2633)
+- Update stencil-utils versionto 6.21.0 [#2632](https://github.com/bigcommerce/cornerstone/pull/2632)
+- Fix incorrect request URL for getting states [#2630](https://github.com/bigcommerce/cornerstone/pull/2630)
+- Make cart preview work with multi-lang by passing baseUrl to cart API calls [#2627](https://github.com/bigcommerce/cornerstone/pull/2627)
+- Render backorder message on PDP [#2625](https://github.com/bigcommerce/cornerstone/pull/2625)
+- Move shipping expectation prompt to cart totals [#2624](https://github.com/bigcommerce/cornerstone/pull/2624)
+- Render shipping expectation prompt on cart page [#2622](https://github.com/bigcommerce/cornerstone/pull/2622)
+
+## 6.19.0 (03-17-2026)
+- Expose shopper messaging on Cart page to show that maximum discount limit has been reached [#2620](https://github.com/bigcommerce/cornerstone/pull/2620)
+- Refactor Language Selector Component to consume real data from Stencil Context [#2616](https://github.com/bigcommerce/cornerstone/pull/2616)
+- Fix `onThemeBundleMain` binding to `window` load instead of script element, guard `optionChangeDecorator` against null response on error, and fix `updateWalletButtonsView` crash on cart edit modal [#2615](https://github.com/bigcommerce/cornerstone/pull/2615)
+- Add to Cart and quantity buttons disabled when BCData is empty [#2612](https://github.com/bigcommerce/cornerstone/pull/2612)
+- Introduce strikethrough display for discounted shipping quote prices on cart page [#2611](https://github.com/bigcommerce/cornerstone/pull/2611)
+- Render native language names on storefront using Intl.DisplayNames [#2607](https://github.com/bigcommerce/cornerstone/pull/2607)
+- CUST-4055 Add backend-based static translations for account edit page form fields [#2606](https://github.com/bigcommerce/cornerstone/pull/2606)
+- Out of Stock banner is duplicated and overlaps Add to cart button on PDP [#2601](https://github.com/bigcommerce/cornerstone/pull/2601)
+- Fixed YouTube video playback in Safari by adding widget_referrer and origin parameters [#2598](https://github.com/bigcommerce/cornerstone/pull/2598)
+
+## 6.18.3 (01-21-2026)
+- Fixed an issue where bulk pricing on Product Details Page do not display both prices when tax display settings is set to `both including and excluding tax`.
+
 ## 6.18.2 (01-08-2026)
 - Fixed validation removal on form fields [#2593](https://github.com/bigcommerce/cornerstone/pull/2593)
 **Note:** This version releases all changes from version 6.18.0.

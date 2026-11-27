@@ -1,5 +1,5 @@
 import utils from '@bigcommerce/stencil-utils';
-import ProductDetailsBase, { optionChangeDecorator } from './product-details-base';
+import ProductDetailsBase from './product-details-base';
 import 'foundation-sites/js/foundation/foundation';
 import 'foundation-sites/js/foundation/foundation.reveal';
 import ImageGallery from '../product/image-gallery';
@@ -45,8 +45,6 @@ export default class ProductDetails extends ProductDetailsBase {
         });
 
         const $productOptionsElement = $('[data-product-option-change]', $form);
-        const hasOptions = $productOptionsElement.html().trim().length;
-        const hasDefaultOptions = $productOptionsElement.find('[data-default]').length;
         const $productSwatchGroup = $('[id*="attribute_swatch"]', $form);
         const $productSwatchLabels = $('.form-option-swatch', $form);
         const placeSwatchLabelImage = (_, label) => {
@@ -87,6 +85,18 @@ export default class ProductDetails extends ProductDetailsBase {
             this.productOptionsChanged(event);
             this.setProductVariant();
         });
+
+        if (!$productOptionsElement.length) {
+            const simpleProductId = $('[name="product_id"]', $form).val();
+            utils.api.productAttributes.optionChange(simpleProductId, $form.serialize(), (err, response) => {
+                if (err || !response || !response.data) return;
+                this.updateBackorderContext(response.data);
+                const vm = this.getViewModel(this.$scope);
+                const qty = parseInt(vm.quantity.$input.val(), 10) || 0;
+                this.updateQtyBackorderedMessage(qty, vm);
+                this.updateBackorderMessage(vm);
+            });
+        }
 
         $form.on('submit', event => {
             event.preventDefault();
@@ -140,7 +150,7 @@ export default class ProductDetails extends ProductDetailsBase {
                     </div>
                 `;
                 });
-                
+
                 // Open preview modal and update content
                 if (this.previewModal) {
                     this.previewModal.open();
@@ -163,21 +173,22 @@ export default class ProductDetails extends ProductDetailsBase {
                     title: 'Product Selection Required',
                     text: 'Please select a product before proceeding.',
                     confirmButtonText: 'Got it!'
-                  });
+                });
             });
-        })
+        });
 
-        // Update product attributes. Also update the initial view in case items are oos
-        // or have default variant properties that change the view
-        if ((isEmpty(productAttributesData) || hasDefaultOptions) && hasOptions) {
-            const $productId = $('[name="product_id"]', $form).val();
-            const optionChangeCallback = optionChangeDecorator.call(this, hasDefaultOptions);
+        this.updateProductAttributes(productAttributesData);
 
-            utils.api.productAttributes.optionChange($productId, $form.serialize(), 'products/bulk-discount-rates', optionChangeCallback);
+        if (productAttributesData
+            && typeof productAttributesData === 'object'
+            && Object.keys(productAttributesData).length > 0) {
+            this.updateView(productAttributesData, null);
         } else {
-            this.updateProductAttributes(productAttributesData);
-            bannerUtils.dispatchProductBannerEvent(productAttributesData);
+            // eslint-disable-next-line no-console
+            console.warn('BCData.product_attributes is empty on product initialization');
         }
+
+        bannerUtils.dispatchProductBannerEvent(productAttributesData);
 
         $productOptionsElement.show();
 
@@ -486,7 +497,7 @@ export default class ProductDetails extends ProductDetailsBase {
                     data: productAttributesContent,
                 },
             }));
-        });
+        }, { baseUrl: this.context.secureBaseUrl });
     }
 
     productOptionsChanged2(event) {
@@ -554,7 +565,7 @@ export default class ProductDetails extends ProductDetailsBase {
 
             var color = $('[data-product-option-change-2] [data-product-attribute="swatch"]').find('.form-radio:checked').next().find('> span').attr('title');
             $('#halo_sticky_addToCart .option-value .color-name').text(` - ${color}`);
-        });
+        }, { baseUrl: this.context.secureBaseUrl });
     }
 
     /**
@@ -652,6 +663,8 @@ export default class ProductDetails extends ProductDetailsBase {
             this.addToCartValidator.performCheck();
 
             this.updateProductDetailsData();
+            this.updateQtyBackorderedMessage(qty, viewModel);
+            this.updateBackorderMessage(viewModel);
         });
 
         // Prevent triggering quantity change when pressing enter
@@ -665,7 +678,11 @@ export default class ProductDetails extends ProductDetailsBase {
         });
 
         this.$scope.on('keyup', '.form-input--incrementTotal', () => {
+            const viewModel = this.getViewModel(this.$scope);
+            const qty = parseInt(viewModel.quantity.$input.val(), 10) || 0;
             this.updateProductDetailsData();
+            this.updateQtyBackorderedMessage(qty, viewModel);
+            this.updateBackorderMessage(viewModel);
         });
     }
 
@@ -799,7 +816,7 @@ export default class ProductDetails extends ProductDetailsBase {
                             // if no modal, redirect to the cart page
                             this.redirectTo(response.data.cart_item.cart_url || this.context.urls.cart);
                         }
-                    });
+                    }, { baseUrl: this.context.secureBaseUrl });
                 })
         } else {
             // Add item to cart
@@ -841,15 +858,13 @@ export default class ProductDetails extends ProductDetailsBase {
                     this.updateCartContent(this.previewModal, response.data.cart_item.id, () => {
                         $('.previewCart-pl-layout .productView').append(listItemAddedHtml);
                     });
-                } else {
+                    } else {
                     this.$overlay.show();
                     // if no modal, redirect to the cart page
                     this.redirectTo(response.data.cart_item.cart_url || this.context.urls.cart);
                 }
-            });
+            }, { baseUrl: this.context.secureBaseUrl });
         }
-
-
 
         this.setLiveRegionAttributes($addToCartBtn.next(), 'status', 'polite');
     }
@@ -874,6 +889,7 @@ export default class ProductDetails extends ProductDetailsBase {
                     },
                 },
             },
+            baseUrl: this.context.secureBaseUrl,
         };
 
         utils.api.cart.getContent(options, onComplete);
@@ -1063,7 +1079,7 @@ export default class ProductDetails extends ProductDetailsBase {
                 ++i;
                 this.addToCart(form, i, resolve, itemsPlAdded);
             });
-        });
+        }, { baseUrl: this.context.secureBaseUrl });
     }
 
     updateDateSelector() {
