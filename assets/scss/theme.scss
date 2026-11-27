@@ -4088,7 +4088,8 @@ nav.pagination {
       }
   }
   @media screen and (min-width: 551px) {
-      .cart-totals {
+      .cart-totals,
+      .cart-coupons {
           width: 55vw;
       }
       .cart-total-value {
@@ -4096,7 +4097,8 @@ nav.pagination {
       }
   }
   @media screen and (min-width: 1024px) {
-      .cart-totals {
+      .cart-totals,
+      .cart-coupons {
           width: 30vw;
       }
   }
@@ -4109,6 +4111,63 @@ nav.pagination {
   .sezzle-shopify-info-button {
       padding: .5rem 0;
       @media screen and (max-width: 551px) { float: left; }
+  }
+
+  // Enhanced cart styling - Cornerstone 6.18.2+
+  .cart-total-enhanced {
+    .cart-total-label {
+      color: stencilColor("color-textSecondary");
+    }
+
+    .cart-total-value {
+      font-weight: fontWeight("normal");
+    }
+
+    .cart-total-gift-certificate,
+    .cart-total-shipping-estimator {
+      .cart-total-label {
+        a,
+        button {
+          color: stencilColor("color-textSecondary");
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .cart-total-gift-certificate {
+      .gift-certificate-add,
+      .gift-certificate-cancel {
+        color: stencilColor("color-textSecondary");
+        text-decoration: underline;
+      }
+
+      .cart-gift-certificate-form {
+        .button {
+          background-color: #191919;
+          color: #fff;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+
+  .cart-coupons {
+    .coupon-form {
+      .button {
+        background-color: #191919;
+        color: #fff;
+        font-weight: normal;
+      }
+    }
+  }
+
+  .cart-coupon-link {
+    color: stencilColor("color-textSecondary");
+    text-decoration: underline;
+
+    &:hover {
+      color: stencilColor("color-textBase");
+    }
   }
 }
 .header-logo-image {

@@ -59,7 +59,9 @@
             "shipping": "Livraison",
             "grand_total": "Total",
             "select": "Sélectionner",
-            "update": "Mettre à jour les frais de livraison"
+            "update": "Mettre à jour les frais de livraison",
+            "you_saved": "Vous avez économisé",
+            "in_total": "au total !"
         },
         "preview": {
             "checkout_now": "Payer",
@@ -87,7 +89,8 @@
             "button": "Appliquer",
             "coupon_code": "Saisissez votre code promotionnel",
             "code_label": "Code promotionnel ({code})",
-            "remove": "Supprimer"
+            "remove": "Supprimer",
+            "apply_coupon_code": "Appliquer le code promotionnel"
         },
         "gift_certificates": {
             "apply_gift_certificate": "Appliquer le chèque-cadeau",
@@ -135,7 +138,10 @@
             "continue_shopping": "Continuer mes achats",
             "view_or_edit_cart": "Afficher ou modifier votre panier",
             "you_might_also_like": "Vous aimerez peut-être"
-        }
+        },
+        "discounts": "Remises",
+        "manual_discount": "Remise manuelle",
+        "automatic_discount": "Réduction automatique"
     },
     "common": {
         "store_credit": "Votre avoir disponible s'élève à <strong>{store_credit}</strong>. Pour l'utiliser, il vous suffit de passer votre commande en choisissant l'avoir comme mode de paiement au moment de régler la commande.",

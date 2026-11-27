@@ -12,6 +12,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Gift certificate CSS properties are applied to page after previewing Gift certificate on storefront [#2330](https://github.com/bigcommerce/cornerstone/pull/2330)
 - Translation Gap: Submit Return Request button [#2331](https://github.com/bigcommerce/cornerstone/pull/2331)
 
+## 6.18.2 (01-08-2026)
+- Fixed validation removal on form fields [#2593](https://github.com/bigcommerce/cornerstone/pull/2593)
+**Note:** This version releases all changes from version 6.18.0.
+
+## 6.18.1 (01-05-2026)
+- CUST-4064 Fix state/zip validation error on country change and show state dropdown for optional-state countries [#2591](https://github.com/bigcommerce/cornerstone/pull/2591)
+
+## 6.18.0 (01-02-2026)
+- CUST-4064 Add dynamic postal code validation based on country requirements [#2585](https://github.com/bigcommerce/cornerstone/pull/2585)
+- Update Cornerstone documentation url [#2575](https://github.com/bigcommerce/cornerstone/pull/2575)
+- Fix keyboard navigation on the swatch options [#2576](https://github.com/bigcommerce/cornerstone/pull/2576)
+- CHECKOUT-9688 Introduce new coupon management section on cart page [#2578](https://github.com/bigcommerce/cornerstone/pull/2578)
+- CHECKOUT-9692 show the display name and coupon code under line item [#2579](https://github.com/bigcommerce/cornerstone/pull/2579)
+- Fix Cart Page not updating when adding product via Quick View [#2581](https://github.com/bigcommerce/cornerstone/pull/2581)
+- CHECKOUT-9690 Add new discounts section to display the order promotions and coupon discounts [#2582](https://github.com/bigcommerce/cornerstone/pull/2582)
+- CHECKOUT-9726 Seperate actionable links from price calculations and totals [#2584](https://github.com/bigcommerce/cornerstone/pull/2584)
+
 ## 6.17.0 (10-01-2025)
 - Add net-new "order.pickup_addresses" to unify objects used on Order Details and Order Invoice pages [#2557](https://github.com/bigcommerce/cornerstone/pull/2557)
 - Removed banner widget configuration and related translations [#2561](https://github.com/bigcommerce/cornerstone/pull/2561)

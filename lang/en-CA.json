@@ -4,7 +4,6 @@
         "skip_to_main": "Skip to main content"
     },
     "footer": {
-
         "title": "Footer Start",
         "brands": "Popular Brands",
         "navigate": "Customer Service",
@@ -60,7 +59,9 @@
             "shipping": "Shipping",
             "grand_total": "Grand total",
             "select": "Select",
-            "update": "Update shipping cost"
+            "update": "Update shipping cost",
+            "you_saved": "You saved",
+            "in_total": "in total!"
         },
         "preview": {
             "checkout_now": "CHECKOUT",
@@ -88,7 +89,8 @@
             "button": "Apply",
             "coupon_code": "Enter your coupon code",
             "code_label": "Coupon ({code})",
-            "remove": "Remove"
+            "remove": "Remove",
+            "apply_coupon_code": "Apply coupon code"
         },
         "gift_certificates": {
             "apply_gift_certificate": "Apply gift certificate",
@@ -136,16 +138,19 @@
             "continue_shopping": "Continue Shopping",
             "view_or_edit_cart": "View or edit your cart",
             "you_might_also_like": "You may also like"
-        }
+        },
+        "discounts": "Discounts",
+        "manual_discount": "Manual discount",
+        "automatic_discount": "Automatic discount"
     },
     "common": {
         "store_credit": "You have <strong>{store_credit}</strong> of store credit. To use it, simply place your order and you will be able to choose store credit as the payment method when it comes time to pay for your order.",
         "store_credit_overview": "{credit} Store Credit",
         "generic_error": "Oops! Something went wrong.",
         "currency": "Currency: {code}",
-        "currency_switch_promotion" : "Promotions and gift certificates that don't apply to the new currency will be removed from your cart. Are you sure you want to continue?",
+        "currency_switch_promotion": "Promotions and gift certificates that don't apply to the new currency will be removed from your cart. Are you sure you want to continue?",
         "channel": "Store: {code}",
-        "channel_switch_warning" : "Warning text for store switching",
+        "channel_switch_warning": "Warning text for store switching",
         "newsletter_signup": "Register for our newsletter",
         "form_submit": "Submit",
         "no_preference": "No Preference",
@@ -366,10 +371,10 @@
                 "download_items": "Download Items",
                 "card_ending": "ending in {card}",
                 "shipments": {
-                  "date": "Date Shipped",
-                  "method": "Shipping Method",
-                  "link": "Tracking Link",
-                  "header": "Shipping Details"
+                    "date": "Date Shipped",
+                    "method": "Shipping Method",
+                    "link": "Tracking Link",
+                    "header": "Shipping Details"
                 },
                 "actions": "Actions",
                 "reorder": "Reorder",
@@ -422,14 +427,14 @@
             "sepa_direct_debit": "SEPA Direct Debit",
             "paypal": "PayPal",
             "billing_address_labels": {
-              "address_line_1": "Address Line 1",
-              "address_line_2": "Address Line 2",
-              "suburb_city": "Suburb/City",
-              "state_province": "State/Province",
-              "choose_state": "Choose a State",
-              "country": "Country",
-              "choose_country": "Choose a Country",
-              "zip_postcode": "Zip/Postcode"
+                "address_line_1": "Address Line 1",
+                "address_line_2": "Address Line 2",
+                "suburb_city": "Suburb/City",
+                "state_province": "State/Province",
+                "choose_state": "Choose a State",
+                "country": "Country",
+                "choose_country": "Choose a Country",
+                "zip_postcode": "Zip/Postcode"
             }
         },
         "returns": {
@@ -475,7 +480,7 @@
             "update_details": "Update Details"
         },
         "recent_items": {
-            "heading" : "Recently Viewed",
+            "heading": "Recently Viewed",
             "no_items": "The items you've recently looked at on our site will appear below."
         },
         "wishlists": {
@@ -572,7 +577,6 @@
             },
             "edit": {
                 "heading": "Update Address"
-
             },
             "confirm_delete": "Are you sure you want to delete this address?",
             "submit_value": "Save Address"
@@ -721,7 +725,7 @@
         "change_product_options": "Change options for {name}",
         "quantity_decrease": "Decrease Quantity of {name}",
         "quantity_increase": "Increase Quantity of {name}",
-        "quantity_error_message":"The quantity should contain only numbers",
+        "quantity_error_message": "The quantity should contain only numbers",
         "purchase_units": "{quantity, plural, =0{0 units} one {# unit} other {# units}}",
         "max_purchase_quantity": "Maximum Purchase:",
         "min_purchase_quantity": "Minimum Purchase:",
@@ -1028,7 +1032,7 @@
         "close_without_changes": "You have unsaved changes to your data collection preferences. Are you sure you want to close without saving?",
         "unsaved_changes": "You have unsaved changes",
         "by_using": "By using our website, you're agreeing to our",
-        "agree_on_data_collection":"By using our website, you're agreeing to the collection of data as described in our ",
+        "agree_on_data_collection": "By using our website, you're agreeing to the collection of data as described in our ",
         "change_preferences": "You can change your preferences at any time",
         "cancel_dialog_title": "Are you sure you want to cancel?",
         "privacy_policy": "Privacy Policy",
